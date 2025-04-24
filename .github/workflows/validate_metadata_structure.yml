@@ -40,7 +40,7 @@ jobs:
           if [[ "${{ steps.validate.outputs.has_errors }}" == "true" ]]; then
             echo "# Salesforce Metadata Validation Report" > report.md
             echo "" >> report.md
-            echo "## ❌ Unsupported Types`" >> report.md
+            echo "## ❌ Unsupported Types" >> report.md
             echo "" >> report.md
             echo "The following metadata types are not packageable and should be removed from `force-app/main/default`:" >> report.md
             
@@ -56,19 +56,21 @@ jobs:
             echo "### Recommendations" >> report.md
             echo "" >> report.md
             echo "Move all unsupported metadata types to one of the following directories:" >> report.md
-            echo "- unpackaged/pre" >> report.md
-            echo "- unpackaged/post" >> report.md
-            echo "- a custom directory" >> report.md
             echo "" >> report.md
-            echo "If you need help deciding, review [Metadata Retrieval FAQs](https://github.com/Nimba-Solutions/.github/wiki/Metadata-Retrieval-FAQs)" >> report.md
+            echo "```" >> report.md
+            echo "📁                         # Project Root" >> report.md
+            echo "│" >> report.md
+            echo "├── 📁 unpackaged          # Non-packaged content" >> report.md
+            echo "│   ├── 📁 pre             # Deployed BEFORE package installation" >> report.md
+            echo "│   └── 📁 post            # Deployed AFTER package installation" >> report.md
+            echo "│" >> report.md
+            echo "└── 📁 [custom-directory]  # For project-specific organization" >> report.md
+            echo "```" >> report.md
+            echo "" >> report.md
+            echo "If you need help deciding where to put things, review [Metadata Retrieval FAQs](https://github.com/Nimba-Solutions/.github/wiki/Metadata-Retrieval-FAQs)" >> report.md
             echo "report_content=true" >> $GITHUB_OUTPUT
           else
-            echo "# Salesforce Metadata Structure Validation Results" > report.md
-            echo "" >> report.md
-            echo "## ✅ Validation Passed" >> report.md
-            echo "" >> report.md
-            echo "All directories in force-app/main/default are valid packageable Salesforce metadata types." >> report.md
-            echo "report_content=true" >> $GITHUB_OUTPUT
+            echo "report_content=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Find or create comment
