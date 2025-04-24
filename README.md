@@ -16,4 +16,4 @@ Designed for Salesforce developers and administrators, AuthKit provides user-fri
 ### To contribute to on this project on github:
 
 1. Prepare your changes in a `feature/*` branch
-2. Submit a Pull Request to `main`
+2. Submit a Pull Request to the `main` branch
