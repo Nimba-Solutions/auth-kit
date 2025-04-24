@@ -4,10 +4,10 @@ on:
   workflow_call:
     outputs:
       has_errors:
-        description: "Whether any invalid metadata directories were found"
+        description: "Whether any unsupported Metadata Types were found"
         value: ${{ jobs.validate-structure.outputs.has_errors }}
       invalid_dirs:
-        description: "List of invalid directories found"
+        description: "List of unsupported Metadata Types found"
         value: ${{ jobs.validate-structure.outputs.invalid_dirs }}
 
 jobs:
@@ -45,7 +45,7 @@ jobs:
           
           if [[ -n "${{ steps.validate.outputs.invalid_dirs }}" ]]; then
             echo "" >> report.md
-            echo "### Invalid Directories" >> report.md
+            echo "### Unsupported Types" >> report.md
             echo "" >> report.md
             
             for dir in $(echo '${{ steps.validate.outputs.invalid_dirs }}' | jq -r '.[]'); do
@@ -56,8 +56,12 @@ jobs:
           echo "" >> report.md
           echo "### Recommendations" >> report.md
           echo "" >> report.md
-          echo "- Make sure all Metadata Types under force-app/main/default are supported by [Unlocked Packaging](https://developer.salesforce.com/docs/metadata-coverage/62)" >> report.md
-          echo "- Move unsupported Metadata Types to unpackaged/pre or unpackaged/post" >> report.md
+          echo "Move all unsupported Metadata Types to one of the following directories:" >> report.md
+          echo "- unpackaged/pre" >> report.md
+          echo "- unpackaged/post" >> report.md
+          echo "- a custom directory" >> report.md
+          echo "" >> report.md
+          echo "If you need help deciding, review [Metadata Retrieval FAQs](https://github.com/Nimba-Solutions/.github/wiki/Metadata-Retrieval-FAQs)" >> report.md
 
       - name: Comment on PR
         if: github.event_name == 'pull_request' && steps.validate.outputs.has_errors == 'true'
