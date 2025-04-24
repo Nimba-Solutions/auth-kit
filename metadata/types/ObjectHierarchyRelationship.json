@@ -1,0 +1,27 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_objecthierarchyrelationship.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\",\"features\":[\"INDUSTRIESMANUFACTURING\"],\"settings\":{\"industriesManufacturingSettings\":{\"enableIndManufacturing\":true}}}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\",\"features\":[\"INDUSTRIESMANUFACTURING\"],\"settings\":{\"industriesManufacturingSettings\":{\"enableIndManufacturing\":true}}}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"features\":[\"INDUSTRIESMANUFACTURING\"],\"settings\":{\"industriesManufacturingSettings\":{\"enableIndManufacturing\":true}}}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\",\"features\":[\"INDUSTRIESMANUFACTURING\"],\"settings\":{\"industriesManufacturingSettings\":{\"enableIndManufacturing\":true}}}"
+  },
+  "knownIssues": null,
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": true,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": false,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": false,
+    "apexMetadataApi": false
+  }
+}

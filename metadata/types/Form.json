@@ -1,0 +1,28 @@
+{
+  "details": [
+    {
+      "url": "Documentation not available",
+      "name": "Metadata API Documentation"
+    },
+    {
+      "url": null,
+      "detailText": null,
+      "detailRichText": "<p>You must have the Forms pilot permission enabled in your Dev Hub to use this Metadata Type.</p>",
+      "name": "Pilot"
+    }
+  ],
+  "scratchDefinitions": null,
+  "knownIssues": null,
+  "channels": {
+    "unlockedPackagingWithoutNamespace": false,
+    "unlockedPackagingWithNamespace": false,
+    "toolingApi": false,
+    "sourceTracking": false,
+    "metadataApi": false,
+    "managedPackaging": false,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": false,
+    "apexMetadataApi": false
+  }
+}

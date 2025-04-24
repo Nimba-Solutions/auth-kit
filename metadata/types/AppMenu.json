@@ -1,0 +1,37 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_appmenu.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\"}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\"}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\"}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\"}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p300000008e2HAAQ",
+      "lastUpdated": "2019-05-03",
+      "affectedUsers": 147,
+      "tags": "API",
+      "status": "Fixed",
+      "summary": "Retrieving AppMenu.AppSwitcher via ANT (or WorkBench or Force.com IDE) throws an error like,\r\n\r\n\"Metadata API received improper input. Please ensure file name and capitalization is correct. Load of metadata from db failed for metadata of type:AppMenu and file name:AppSwitcher\"\r\n\r\nThis seem to happen only if there are any connected apps in the org.",
+      "title": "Unable to retrieve AppMenu.AppSwitcher"
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": false,
+    "unlockedPackagingWithNamespace": false,
+    "toolingApi": false,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": false,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": false,
+    "apexMetadataApi": false
+  }
+}

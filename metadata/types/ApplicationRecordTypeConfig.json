@@ -1,0 +1,27 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_applicationrecordtypeconfig.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\",\"features\":[\"PUBLICSECTOR\"]}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\",\"features\":[\"PUBLICSECTOR\"]}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"features\":[\"PUBLICSECTOR\"]}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\",\"features\":[\"PUBLICSECTOR\"]}"
+  },
+  "knownIssues": null,
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": true,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": false,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": false,
+    "apexMetadataApi": false
+  }
+}

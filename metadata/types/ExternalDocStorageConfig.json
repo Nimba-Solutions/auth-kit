@@ -1,0 +1,27 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_externaldocstorageconfig.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\",\"features\":[\"BILLINGLITE\"],\"settings\":{\"industriesSettings\":{\"enableMicrosoftWordAddInEnabled\":true}}}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\",\"features\":[\"BILLINGLITE\"],\"settings\":{\"industriesSettings\":{\"enableMicrosoftWordAddInEnabled\":true}}}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"features\":[\"BILLINGLITE\"],\"settings\":{\"industriesSettings\":{\"enableMicrosoftWordAddInEnabled\":true}}}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\",\"features\":[\"BILLINGLITE\"],\"settings\":{\"industriesSettings\":{\"enableMicrosoftWordAddInEnabled\":true}}}"
+  },
+  "knownIssues": null,
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": true,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": true,
+    "classicManagedPackaging": true,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_corswhitelistorigin.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\"}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\"}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\"}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\"}"
+  },
+  "knownIssues": null,
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": false,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": true,
+    "classicManagedPackaging": true,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

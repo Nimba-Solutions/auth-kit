@@ -1,0 +1,32 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_embeddedservicefieldservice.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": null,
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000003UqeQAE",
+      "lastUpdated": "2020-08-16",
+      "affectedUsers": 6,
+      "tags": "Salesforce DX",
+      "status": "In Review",
+      "summary": "FieldService feature is not available in Non Developer Edition orgs",
+      "title": "FieldService feature is not available in Non Developer Edition orgs"
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": false,
+    "unlockedPackagingWithNamespace": false,
+    "toolingApi": false,
+    "sourceTracking": false,
+    "metadataApi": false,
+    "managedPackaging": false,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": false,
+    "apexMetadataApi": false
+  }
+}

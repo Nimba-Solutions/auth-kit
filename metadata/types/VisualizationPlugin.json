@@ -1,0 +1,22 @@
+{
+  "details": [
+    {
+      "url": "Documentation not available.",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": null,
+  "knownIssues": null,
+  "channels": {
+    "unlockedPackagingWithoutNamespace": false,
+    "unlockedPackagingWithNamespace": false,
+    "toolingApi": false,
+    "sourceTracking": false,
+    "metadataApi": false,
+    "managedPackaging": false,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": false,
+    "apexMetadataApi": false
+  }
+}

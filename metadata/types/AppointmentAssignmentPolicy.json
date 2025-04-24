@@ -1,0 +1,27 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_appointmentassignmentpolicy.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\",\"features\":[\"ASSETSCHEDULING:1\"]}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\",\"features\":[\"ASSETSCHEDULING:1\"]}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"features\":[\"ASSETSCHEDULING:1\"]}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\",\"features\":[\"ASSETSCHEDULING:1\"]}"
+  },
+  "knownIssues": null,
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": false,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": false,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": false,
+    "apexMetadataApi": false
+  }
+}

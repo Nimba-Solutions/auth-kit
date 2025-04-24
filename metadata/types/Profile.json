@@ -1,0 +1,46 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_profile.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\"}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\",\"features\":[\"EASYTRIALHEADERALLOWED\"]}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\"}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\"}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A000000ATbqQAG",
+      "lastUpdated": "2018-11-01",
+      "affectedUsers": 12,
+      "tags": "Salesforce DX",
+      "status": "Fixed",
+      "summary": "If \"sfdx force:source:pull\" command is run to fetch the profile details after changing the assigned record types, we see that the changes do not get pulled.",
+      "title": "sfdx force:source:pull does not fetch the changes on Profile for record type permission change"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A000000nZCLQA2",
+      "lastUpdated": "2019-02-09",
+      "affectedUsers": 76,
+      "tags": "Salesforce DX",
+      "status": "Fixed",
+      "summary": "For SFDX pull requests, for field changes, pulled profiles lose previous Field Level Security from profile xml",
+      "title": "sfdx force:source:pull loses Field Level Security"
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": true,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": true,
+    "classicManagedPackaging": true,
+    "changeSets": false,
+    "apexMetadataApi": false
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_omniuicard.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\",\"features\":[\"INTERACTIONPLATFORMPILOT\",\"OMNISTUDIOMETADATA\"]}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\",\"features\":[\"INTERACTIONPLATFORMPILOT\",\"OMNISTUDIOMETADATA\"]}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"features\":[\"INTERACTIONPLATFORMPILOT\",\"OMNISTUDIOMETADATA\"]}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\",\"features\":[\"INTERACTIONPLATFORMPILOT\",\"OMNISTUDIOMETADATA\"]}"
+  },
+  "knownIssues": null,
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": false,
+    "sourceTracking": false,
+    "metadataApi": true,
+    "managedPackaging": false,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": false,
+    "apexMetadataApi": false
+  }
+}

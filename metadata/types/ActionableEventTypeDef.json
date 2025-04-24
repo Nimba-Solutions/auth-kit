@@ -1,0 +1,22 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_actionableeventtypedef.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": null,
+  "knownIssues": null,
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": true,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": false,
+    "classicUnmanagedPackaging": true,
+    "classicManagedPackaging": true,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

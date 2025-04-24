@@ -1,0 +1,46 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/customfield.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\"}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\"}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\"}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\"}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000018BeyQAE",
+      "lastUpdated": "2018-02-23",
+      "affectedUsers": 0,
+      "tags": "API",
+      "status": "Fixed",
+      "summary": "If you have a lookup to a standard object and make a change to that field you can't pull the field update.\r\nLookup fields referencing custom objects work just fine.",
+      "title": "sfdx force:source:pull': Lookup fields (where the lookup targets a standard object) are not handled correctly"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000018BmnQAE",
+      "lastUpdated": "2019-10-12",
+      "affectedUsers": 46,
+      "tags": "Metadata",
+      "status": "Fixed",
+      "summary": "When we Delete a custom field / object from Scratch org that is not removing its references from other components like Profiles , Permission sets , Layouts etc..",
+      "title": "Deleting a custom field/object should remove references with force:source:pull"
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": true,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": true,
+    "classicManagedPackaging": true,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

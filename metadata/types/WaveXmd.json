@@ -1,0 +1,27 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_wavexmd.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\",\"settings\":{\"analyticsSettings\":{\"sonicEnabled\":true}}}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\",\"settings\":{\"analyticsSettings\":{\"sonicEnabled\":true}}}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"settings\":{\"analyticsSettings\":{\"sonicEnabled\":true}}}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\",\"settings\":{\"analyticsSettings\":{\"sonicEnabled\":true}}}"
+  },
+  "knownIssues": null,
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": false,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": true,
+    "classicManagedPackaging": true,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

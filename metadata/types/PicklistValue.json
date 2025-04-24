@@ -1,0 +1,37 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_globalpicklistvalue.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\"}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\"}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\"}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\"}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000003Uk2QAE",
+      "lastUpdated": "Yesterday",
+      "affectedUsers": 129,
+      "tags": "Salesforce DX",
+      "status": "In Review",
+      "summary": "Picklist values not getting deployed during package upgrades, the newly added picklist value is not showing up in upgraded version of unlocked package",
+      "title": "Picklist values not getting deployed during unlocked package upgrades"
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": false,
+    "unlockedPackagingWithNamespace": false,
+    "toolingApi": false,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": false,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": false,
+    "apexMetadataApi": false
+  }
+}

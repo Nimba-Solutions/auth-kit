@@ -1,0 +1,37 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_sitedotcom.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\",\"features\":[\"SITEDOTCOM\",\"SITEFORCEPUBLISHER\",\"SITES\"]}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\",\"features\":[\"SITEDOTCOM\",\"SITEFORCEPUBLISHER\",\"SITES\"]}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"features\":[\"SITEDOTCOM\",\"SITEFORCEPUBLISHER\",\"SITES\"]}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\",\"features\":[\"SITEDOTCOM\",\"SITEFORCEPUBLISHER\",\"SITES\"]}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000019QdwQAE",
+      "lastUpdated": "2020-02-15",
+      "affectedUsers": 57,
+      "tags": "AppExchange, Change Sets, Communities",
+      "status": "Fixed",
+      "summary": "This issue occurs when deploying a community from an org to another using change sets.\r\n\r\nTypically the error thrown when validating the change set in the target org is \"An unknown exception has occurred.\"\r\n\r\nBelow is a technical explanation of how this issue occurs.\r\n\r\nWhen a Force.com Site for a community is first created in any org, it uses the naming convention \"<Community_Name>1\". However, if renamed later, the naming convention is changed to \"<Community_Name>_C\".\r\n\r\nThis community naming convention mismatch between the community's site component may cause the deployment to fail with the generic error above.\r\n\r\nYou can verify whether this is the scenario by clicking (View Source) for the community's Network component in the inbound change set. Locate the 'picassoSite' property and if its value ends with \"_C\" it would indicate the site had been renamed in the source org at some point in time.\r\n\r\nTo check the naming convention of your Community Site in the target org you can run the following query:\r\nSELECT Id, MasterLabel, Name, SiteType FROM Site WHERE SiteType = 'ChatterNetworkPicasso'\r\n\r\nReview the Name field value and check to see if it ends with \"1\" and if so, it's unlikely the community has been renamed. If the two values described above match then the deployment should be successful.",
+      "title": "Deploying change set containing community fails with error: \"An unknown exception has occurred\""
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": false,
+    "unlockedPackagingWithNamespace": false,
+    "toolingApi": false,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": false,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_authproviders.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\"}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\"}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\"}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\"}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A000000JWYJQA4",
+      "lastUpdated": "2020-05-29",
+      "affectedUsers": 16,
+      "tags": "Metadata, Spring 18",
+      "status": "Fixed",
+      "summary": "Some customers have observed that after the first authentication of a user in Lightning for Email, the following error is thrown when pulling metadata using the Salesforce CLI.\r\n\r\nERROR:  Entity of type 'AuthProvider' named 'Lightning For Gmail' cannot be found.",
+      "title": "Metadata cannot be pulled after first authentication with Lightning for GMail"
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": false,
+    "toolingApi": false,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": false,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

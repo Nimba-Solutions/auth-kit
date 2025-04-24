@@ -1,0 +1,33 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_botversion.htm",
+      "name": "Metadata API Documentation"
+    },
+    {
+      "url": null,
+      "detailText": null,
+      "detailRichText": "<p><span style=\"color: rgb(62, 62, 60);\">To use this Metadata Type in a scratch org (starting in Summer &#39;19) you must enable Einstein Bots and accept the associated Terms of Service agreement </span><b style=\"color: rgb(62, 62, 60);\">in the Dev Hub</b><span style=\"color: rgb(62, 62, 60);\">.  Once this is done, use the scratch org features and settings as shown in the Sample Scratch Definition tab when you create a new scratch org.</span></p>",
+      "name": "Dev Hub requirement when using scratch orgs"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\",\"features\":[\"CHATBOT\"],\"settings\":{\"botSettings\":{\"enableBots\":true}}}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\",\"features\":[\"CHATBOT\"],\"settings\":{\"botSettings\":{\"enableBots\":true}}}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"features\":[\"CHATBOT\"],\"settings\":{\"botSettings\":{\"enableBots\":true}}}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\",\"features\":[\"CHATBOT\"],\"settings\":{\"botSettings\":{\"enableBots\":true}}}"
+  },
+  "knownIssues": null,
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": false,
+    "toolingApi": false,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": false,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": false,
+    "apexMetadataApi": false
+  }
+}

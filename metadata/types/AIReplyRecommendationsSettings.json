@@ -1,0 +1,27 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_aireplyrecommendationssettings.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\",\"features\":[\"AIREPLYRECOMMENDATIONS\",\"GENREPLYRECOMMENDATIONS\",\"SERVICEEINSTEINGPTGROUNDING\",\"SERVICEREPLIESGROUNDING\"]}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\",\"features\":[\"AIREPLYRECOMMENDATIONS\",\"GENREPLYRECOMMENDATIONS\",\"SERVICEEINSTEINGPTGROUNDING\",\"SERVICEREPLIESGROUNDING\"]}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"features\":[\"AIREPLYRECOMMENDATIONS\",\"GENREPLYRECOMMENDATIONS\",\"SERVICEEINSTEINGPTGROUNDING\",\"SERVICEREPLIESGROUNDING\"]}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\",\"features\":[\"AIREPLYRECOMMENDATIONS\",\"GENREPLYRECOMMENDATIONS\",\"SERVICEEINSTEINGPTGROUNDING\",\"SERVICEREPLIESGROUNDING\"]}"
+  },
+  "knownIssues": null,
+  "channels": {
+    "unlockedPackagingWithoutNamespace": false,
+    "unlockedPackagingWithNamespace": false,
+    "toolingApi": false,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": false,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": false,
+    "apexMetadataApi": false
+  }
+}

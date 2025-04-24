@@ -1,0 +1,64 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_classes.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\"}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\"}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\"}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\"}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000018BeFQAU",
+      "lastUpdated": "2019-02-09",
+      "affectedUsers": 5,
+      "tags": null,
+      "status": "Fixed",
+      "summary": "Creation of an Apex class with a dependency to a managed package directly by push fails to include the dependency in the meta XML file",
+      "title": "SFDX: Creation of an Apex class with a dependency to a managed package directly by push fails to include the dependency in the meta XML file"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000003UjnQAE",
+      "lastUpdated": "2020-03-15",
+      "affectedUsers": 1,
+      "tags": "Salesforce DX",
+      "status": "In Review",
+      "summary": "Unable to create Unlocked Package if its metadata contain a class referencing to the PendingServiceRouting object, it throws an error :\r\n\r\n\"ERROR: OmniChannelService: Invalid type: PendingServiceRouting,OmniChannelService: Variable does not exist: queueItem,OmniChannelService: Invalid type",
+      "title": "Unable to create Unlocked Package if its metadata contain a class referencing to the PendingServiceRouting object"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000003UjsQAE",
+      "lastUpdated": "2019-09-06",
+      "affectedUsers": 1,
+      "tags": "Salesforce DX",
+      "status": "Fixed",
+      "summary": "For no namespace unlocked packages , IP protected metadata components behaves differently that how it does in case of mdapi:delpoy, eg of the components :\r\n\r\n- Apex Class\r\n- Apex Trigger\r\n- Visualforce Component",
+      "title": "For no-namespace unlocked packages,  IP protected metadata behaves differently than how mdapi:deploy does"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000003UuRQAU",
+      "lastUpdated": "2019-07-29",
+      "affectedUsers": 0,
+      "tags": "Salesforce DX",
+      "status": "No Fix",
+      "summary": "Incorrect banner info about Installed Apex Class from an unlocked package. If you access an apex class (part of unlocked package) , it shows banner :\r\n\r\n\"This Apex class is editable You will loose any changes you make to this component if you later reinstall or upgrade this package \"",
+      "title": "Incorrect banner info about Installed Apex Class from an unlocked package."
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": true,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": true,
+    "classicManagedPackaging": true,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

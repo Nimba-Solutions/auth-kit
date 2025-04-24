@@ -1,0 +1,45 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_translations.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\",\"settings\":{\"languageSettings\":{\"enableTranslationWorkbench\":true}}}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"settings\":{\"languageSettings\":{\"enableTranslationWorkbench\":true}}}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\",\"settings\":{\"languageSettings\":{\"enableTranslationWorkbench\":true}}}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A000000JWUMQA4",
+      "lastUpdated": "2019-02-09",
+      "affectedUsers": 1,
+      "tags": "Metadata",
+      "status": "Fixed",
+      "summary": "When reading through the Metadata API, the Translations object doesn't return the translated values if the org has a namespace",
+      "title": "Metadata API:readMetadata - Translations object doesn't return the translated values if the org has a namespace for Translations object"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A000000ATThQAO",
+      "lastUpdated": "13 days ago",
+      "affectedUsers": 105,
+      "tags": "Salesforce DX",
+      "status": "In Review",
+      "summary": "SFDX pull command not retrieving imported Translation records/data from Scratch orgs",
+      "title": "Translations imported in Scratch Orgs are not retrieved by SFDX pull command"
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": false,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": true,
+    "classicManagedPackaging": true,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}
