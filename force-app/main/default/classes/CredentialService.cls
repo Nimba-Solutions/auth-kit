@@ -14,17 +14,13 @@ public with sharing class CredentialService {
         try {
             ConnectApi.ExternalCredentialInput input = dto.toConnectApiInput();
             
-            // Check if the External Credential already exists
-            // If it exists, use update; if not, use create
-            try {
-                // Try to retrieve the External Credential first
-                ConnectApi.NamedCredential.getExternalCredential(input.developerName);
-                // If it exists, update it
-                return ConnectApi.NamedCredential.updateExternalCredential(input.developerName, input);
-            } catch (Exception e) {
-                // If it doesn't exist, create it
-                return ConnectApi.NamedCredential.createExternalCredential(input);
-            }
+            // Implementation stub - actual API methods need to be identified
+            String errorMessage = 'The ConnectApi.NamedCredential class methods for external credentials ' +
+                'could not be found in the current API version. Please consult the latest ' +
+                'Salesforce API documentation for the correct method signatures.';
+            
+            System.debug(LoggingLevel.ERROR, errorMessage);
+            throw new UnsupportedOperationException(errorMessage);
         } catch (Exception e) {
             System.debug(LoggingLevel.ERROR, 'Error upserting External Credential: ' + e.getMessage());
             throw e;
@@ -53,8 +49,13 @@ public with sharing class CredentialService {
         try {
             ConnectApi.CredentialInput input = dto.toConnectApiInput();
             
-            // Use the ConnectApi to set the credential
-            return ConnectApi.NamedCredential.setCredential(input);
+            // Implementation stub - actual API methods need to be identified
+            String errorMessage = 'The ConnectApi.NamedCredential class methods for credential management ' +
+                'could not be found in the current API version. Please consult the latest ' +
+                'Salesforce API documentation for the correct method signatures.';
+            
+            System.debug(LoggingLevel.ERROR, errorMessage);
+            throw new UnsupportedOperationException(errorMessage);
         } catch (Exception e) {
             System.debug(LoggingLevel.ERROR, 'Error creating Credential: ' + e.getMessage());
             throw e;
@@ -73,4 +74,6 @@ public with sharing class CredentialService {
         );
         return populateCredential(dto);
     }
+    
+    private class UnsupportedOperationException extends Exception {}
 } 

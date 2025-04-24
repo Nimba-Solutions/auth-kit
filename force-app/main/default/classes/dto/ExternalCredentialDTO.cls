@@ -76,9 +76,9 @@ public class ExternalCredentialDTO {
      */
     private ConnectApi.CredentialAuthenticationProtocolVariant getAuthProtocolVariantEnum(String variant) {
         if (variant.equalsIgnoreCase('JwtBearer')) {
-            return ConnectApi.CredentialAuthenticationProtocolVariant.JwtBearer;
+            return ConnectApi.CredentialAuthenticationProtocolVariant.JWTBEARER;
         } else if (variant.equalsIgnoreCase('ClientCredentialsJwtAssertion')) {
-            return ConnectApi.CredentialAuthenticationProtocolVariant.ClientCredentialsJwtAssertion;
+            return ConnectApi.CredentialAuthenticationProtocolVariant.CLIENTCREDENTIALSJWTASSERTION;
         } else {
             return null;
         }
@@ -116,17 +116,18 @@ public class ExternalCredentialDTO {
          */
         private ConnectApi.ExternalCredentialParameterType getParameterTypeEnum(String paramType) {
             if (paramType.equalsIgnoreCase('AuthParameter')) {
-                return ConnectApi.ExternalCredentialParameterType.AuthParameter;
+                return ConnectApi.ExternalCredentialParameterType.AUTHPARAMETER;
             } else if (paramType.equalsIgnoreCase('AuthProvider')) {
-                return ConnectApi.ExternalCredentialParameterType.AuthProvider;
+                return ConnectApi.ExternalCredentialParameterType.AUTHPROVIDER;
             } else if (paramType.equalsIgnoreCase('AuthProviderUrl')) {
-                return ConnectApi.ExternalCredentialParameterType.AuthProviderUrl;
+                return ConnectApi.ExternalCredentialParameterType.AUTHPROVIDERURL;
             } else if (paramType.equalsIgnoreCase('JwtBodyClaim')) {
-                return ConnectApi.ExternalCredentialParameterType.JwtBodyClaim;
+                return ConnectApi.ExternalCredentialParameterType.JWTBODYCLAIM;
             } else if (paramType.equalsIgnoreCase('SigningCertificate')) {
-                return ConnectApi.ExternalCredentialParameterType.SigningCertificate;
+                return ConnectApi.ExternalCredentialParameterType.SIGNINGCERTIFICATE;
             } else {
-                return ConnectApi.ExternalCredentialParameterType.Custom;
+                // Default to AUTHPARAMETER if not recognized
+                return ConnectApi.ExternalCredentialParameterType.AUTHPARAMETER;
             }
         }
     }
