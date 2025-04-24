@@ -1,7 +1,9 @@
 # auth-kit
 
-Add a brief description of this project here, in Markdown format.
-It will be shown on the main page of the project's GitHub repository.
+AuthKit is an open source unlocked package for Salesforce that streamlines the management of authentication and credential configurations through Lightning Web Components and Apex. This toolkit simplifies the administration of NamedCredential, ExternalCredential, AuthProvider, and related metadata types, eliminating the need for repetitive configuration tasks.
+
+Designed for Salesforce developers and administrators, AuthKit provides user-friendly UX, API, and CICD interfaces to create, manage, and deploy credential configurations across orgs. The package reduces implementation time for integrations by offering reusable components and standardized patterns for secure authentication management.
+
 
 ## Development
 
