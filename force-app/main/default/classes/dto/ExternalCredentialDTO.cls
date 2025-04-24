@@ -57,15 +57,15 @@ public class ExternalCredentialDTO {
      */
     private ConnectApi.CredentialAuthenticationProtocol getAuthProtocolEnum(String protocol) {
         if (protocol.equalsIgnoreCase('OAuth')) {
-            return ConnectApi.CredentialAuthenticationProtocol.Oauth;
+            return ConnectApi.CredentialAuthenticationProtocol.OAUTH;
         } else if (protocol.equalsIgnoreCase('AwsSig4')) {
-            return ConnectApi.CredentialAuthenticationProtocol.AwsSig4;
+            return ConnectApi.CredentialAuthenticationProtocol.AWSSV4;
         } else if (protocol.equalsIgnoreCase('JWT')) {
-            return ConnectApi.CredentialAuthenticationProtocol.Jwt;
+            return ConnectApi.CredentialAuthenticationProtocol.JWT;
         } else if (protocol.equalsIgnoreCase('Password')) {
-            return ConnectApi.CredentialAuthenticationProtocol.Password;
+            return ConnectApi.CredentialAuthenticationProtocol.BASIC;
         } else {
-            return ConnectApi.CredentialAuthenticationProtocol.Custom;
+            return ConnectApi.CredentialAuthenticationProtocol.CUSTOM;
         }
     }
     
@@ -163,13 +163,14 @@ public class ExternalCredentialDTO {
          */
         private ConnectApi.CredentialPrincipalType getPrincipalTypeEnum(String principalType) {
             if (principalType.equalsIgnoreCase('NamedPrincipal')) {
-                return ConnectApi.CredentialPrincipalType.NamedPrincipal;
+                return ConnectApi.CredentialPrincipalType.NAMEDPRINCIPAL;
             } else if (principalType.equalsIgnoreCase('PerUserPrincipal')) {
-                return ConnectApi.CredentialPrincipalType.PerUserPrincipal;
+                return ConnectApi.CredentialPrincipalType.PERUSERPRINCIPAL;
             } else if (principalType.equalsIgnoreCase('AwsStsPrincipal')) {
-                return ConnectApi.CredentialPrincipalType.AwsStsPrincipal;
+                return ConnectApi.CredentialPrincipalType.AWSSTSPRINCIPAL;
             } else {
-                return ConnectApi.CredentialPrincipalType.Custom;
+                // Default to NAMEDPRINCIPAL if not recognized
+                return ConnectApi.CredentialPrincipalType.NAMEDPRINCIPAL;
             }
         }
     }

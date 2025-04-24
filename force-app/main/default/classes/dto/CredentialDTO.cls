@@ -43,13 +43,14 @@ public class CredentialDTO {
      */
     private ConnectApi.CredentialPrincipalType getPrincipalTypeEnum(String principalType) {
         if (principalType.equalsIgnoreCase('NamedPrincipal')) {
-            return ConnectApi.CredentialPrincipalType.NamedPrincipal;
+            return ConnectApi.CredentialPrincipalType.NAMEDPRINCIPAL;
         } else if (principalType.equalsIgnoreCase('PerUserPrincipal')) {
-            return ConnectApi.CredentialPrincipalType.PerUserPrincipal;
+            return ConnectApi.CredentialPrincipalType.PERUSERPRINCIPAL;
         } else if (principalType.equalsIgnoreCase('AwsStsPrincipal')) {
-            return ConnectApi.CredentialPrincipalType.AwsStsPrincipal;
+            return ConnectApi.CredentialPrincipalType.AWSSTSPRINCIPAL;
         } else {
-            return ConnectApi.CredentialPrincipalType.Custom;
+            // Default to NAMEDPRINCIPAL if not recognized
+            return ConnectApi.CredentialPrincipalType.NAMEDPRINCIPAL;
         }
     }
     

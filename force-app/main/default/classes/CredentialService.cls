@@ -14,11 +14,17 @@ public with sharing class CredentialService {
         try {
             ConnectApi.ExternalCredentialInput input = dto.toConnectApiInput();
             
-            // Use the ConnectApi to create or update the external credential
-            return ConnectApi.NamedCredential.updateExternalCredential(
-                input.developerName,
-                input
-            );
+            // Check if the External Credential already exists
+            // If it exists, use update; if not, use create
+            try {
+                // Try to retrieve the External Credential first
+                ConnectApi.NamedCredential.getExternalCredential(input.developerName);
+                // If it exists, update it
+                return ConnectApi.NamedCredential.updateExternalCredential(input.developerName, input);
+            } catch (Exception e) {
+                // If it doesn't exist, create it
+                return ConnectApi.NamedCredential.createExternalCredential(input);
+            }
         } catch (Exception e) {
             System.debug(LoggingLevel.ERROR, 'Error upserting External Credential: ' + e.getMessage());
             throw e;
@@ -47,8 +53,8 @@ public with sharing class CredentialService {
         try {
             ConnectApi.CredentialInput input = dto.toConnectApiInput();
             
-            // Use the ConnectApi to create the credential
-            return ConnectApi.NamedCredential.createCredential(input);
+            // Use the ConnectApi to set the credential
+            return ConnectApi.NamedCredential.setCredential(input);
         } catch (Exception e) {
             System.debug(LoggingLevel.ERROR, 'Error creating Credential: ' + e.getMessage());
             throw e;
