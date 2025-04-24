@@ -1,19 +1,58 @@
 /**
- * @description Model class for External Credential
- * This class provides a structured way to build External Credential configurations
+ * @description Builder class for External Credential using ConnectApi classes
+ * This class provides a fluent interface for building External Credential inputs
  */
 public with sharing class ExternalCredentialModel {
     
-    public String developerName { get; set; }
-    public String masterLabel { get; set; }
-    public String authenticationProtocol { get; set; }
-    public String authenticationProtocolVariant { get; set; }
-    public List<ParameterModel> parameters { get; set; }
-    public List<PrincipalModel> principals { get; set; }
+    private ConnectApi.ExternalCredentialInput externalCredentialInput;
     
+    /**
+     * @description Constructor
+     */
     public ExternalCredentialModel() {
-        this.parameters = new List<ParameterModel>();
-        this.principals = new List<PrincipalModel>();
+        this.externalCredentialInput = new ConnectApi.ExternalCredentialInput();
+        this.externalCredentialInput.parameters = new List<ConnectApi.ExternalCredentialParameterInput>();
+        this.externalCredentialInput.principals = new List<ConnectApi.ExternalCredentialPrincipalInput>();
+    }
+    
+    /**
+     * @description Sets the developer name
+     * @param developerName The developer name
+     * @return ExternalCredentialModel This instance for method chaining
+     */
+    public ExternalCredentialModel setDeveloperName(String developerName) {
+        this.externalCredentialInput.developerName = developerName;
+        return this;
+    }
+    
+    /**
+     * @description Sets the master label
+     * @param masterLabel The master label
+     * @return ExternalCredentialModel This instance for method chaining
+     */
+    public ExternalCredentialModel setMasterLabel(String masterLabel) {
+        this.externalCredentialInput.masterLabel = masterLabel;
+        return this;
+    }
+    
+    /**
+     * @description Sets the authentication protocol
+     * @param authProtocol The authentication protocol
+     * @return ExternalCredentialModel This instance for method chaining
+     */
+    public ExternalCredentialModel setAuthenticationProtocol(String authProtocol) {
+        this.externalCredentialInput.authenticationProtocol = authProtocol;
+        return this;
+    }
+    
+    /**
+     * @description Sets the authentication protocol variant
+     * @param authProtocolVariant The authentication protocol variant
+     * @return ExternalCredentialModel This instance for method chaining
+     */
+    public ExternalCredentialModel setAuthenticationProtocolVariant(String authProtocolVariant) {
+        this.externalCredentialInput.authenticationProtocolVariant = authProtocolVariant;
+        return this;
     }
     
     /**
@@ -24,7 +63,12 @@ public with sharing class ExternalCredentialModel {
      * @return ExternalCredentialModel This instance for method chaining
      */
     public ExternalCredentialModel addParameter(String name, String type, String value) {
-        this.parameters.add(new ParameterModel(name, type, value));
+        ConnectApi.ExternalCredentialParameterInput parameter = new ConnectApi.ExternalCredentialParameterInput();
+        parameter.parameterName = name;
+        parameter.parameterType = type;
+        parameter.parameterValue = value;
+        
+        this.externalCredentialInput.parameters.add(parameter);
         return this;
     }
     
@@ -36,45 +80,20 @@ public with sharing class ExternalCredentialModel {
      * @return ExternalCredentialModel This instance for method chaining
      */
     public ExternalCredentialModel addPrincipal(String name, String type, Integer sequenceNumber) {
-        this.principals.add(new PrincipalModel(name, type, sequenceNumber));
+        ConnectApi.ExternalCredentialPrincipalInput principal = new ConnectApi.ExternalCredentialPrincipalInput();
+        principal.principalName = name;
+        principal.principalType = type;
+        principal.sequenceNumber = sequenceNumber;
+        
+        this.externalCredentialInput.principals.add(principal);
         return this;
     }
     
     /**
-     * @description Converts the model to JSON
-     * @return String The JSON representation of the model
+     * @description Builds the ConnectApi.ExternalCredentialInput
+     * @return ConnectApi.ExternalCredentialInput The built External Credential input
      */
-    public String toJson() {
-        return JSON.serialize(this, true);
-    }
-    
-    /**
-     * @description Parameter model for External Credential
-     */
-    public class ParameterModel {
-        public String parameterName { get; set; }
-        public String parameterType { get; set; }
-        public String parameterValue { get; set; }
-        
-        public ParameterModel(String name, String type, String value) {
-            this.parameterName = name;
-            this.parameterType = type;
-            this.parameterValue = value;
-        }
-    }
-    
-    /**
-     * @description Principal model for External Credential
-     */
-    public class PrincipalModel {
-        public String principalName { get; set; }
-        public String principalType { get; set; }
-        public Integer sequenceNumber { get; set; }
-        
-        public PrincipalModel(String name, String type, Integer sequenceNumber) {
-            this.principalName = name;
-            this.principalType = type;
-            this.sequenceNumber = sequenceNumber;
-        }
+    public ConnectApi.ExternalCredentialInput build() {
+        return this.externalCredentialInput;
     }
 } 

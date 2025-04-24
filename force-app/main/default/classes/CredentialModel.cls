@@ -1,16 +1,17 @@
 /**
- * @description Model class for Credential values
- * This class provides a structured way to build credential configurations
+ * @description Builder class for Credential using ConnectApi classes
+ * This class provides a fluent interface for building Credential inputs
  */
 public with sharing class CredentialModel {
     
-    public String externalCredential { get; set; }
-    public String principalName { get; set; }
-    public String principalType { get; set; }
-    public Map<String, CredentialValueModel> credentials { get; set; }
+    private ConnectApi.CredentialInput credentialInput;
     
+    /**
+     * @description Constructor
+     */
     public CredentialModel() {
-        this.credentials = new Map<String, CredentialValueModel>();
+        this.credentialInput = new ConnectApi.CredentialInput();
+        this.credentialInput.credentials = new Map<String, ConnectApi.CredentialValueInput>();
     }
     
     /**
@@ -21,9 +22,39 @@ public with sharing class CredentialModel {
      */
     public CredentialModel(String externalCredential, String principalName, String principalType) {
         this();
-        this.externalCredential = externalCredential;
-        this.principalName = principalName;
-        this.principalType = principalType;
+        this.credentialInput.externalCredential = externalCredential;
+        this.credentialInput.principalName = principalName;
+        this.credentialInput.principalType = principalType;
+    }
+    
+    /**
+     * @description Sets the external credential name
+     * @param externalCredential The external credential name
+     * @return CredentialModel This instance for method chaining
+     */
+    public CredentialModel setExternalCredential(String externalCredential) {
+        this.credentialInput.externalCredential = externalCredential;
+        return this;
+    }
+    
+    /**
+     * @description Sets the principal name
+     * @param principalName The principal name
+     * @return CredentialModel This instance for method chaining
+     */
+    public CredentialModel setPrincipalName(String principalName) {
+        this.credentialInput.principalName = principalName;
+        return this;
+    }
+    
+    /**
+     * @description Sets the principal type
+     * @param principalType The principal type
+     * @return CredentialModel This instance for method chaining
+     */
+    public CredentialModel setPrincipalType(String principalType) {
+        this.credentialInput.principalType = principalType;
+        return this;
     }
     
     /**
@@ -34,28 +65,19 @@ public with sharing class CredentialModel {
      * @return CredentialModel This instance for method chaining
      */
     public CredentialModel addCredential(String name, String value, Boolean encrypted) {
-        this.credentials.put(name, new CredentialValueModel(value, encrypted));
+        ConnectApi.CredentialValueInput credValue = new ConnectApi.CredentialValueInput();
+        credValue.value = value;
+        credValue.encrypted = encrypted;
+        
+        this.credentialInput.credentials.put(name, credValue);
         return this;
     }
     
     /**
-     * @description Converts the model to JSON
-     * @return String The JSON representation of the model
+     * @description Builds the ConnectApi.CredentialInput
+     * @return ConnectApi.CredentialInput The built Credential input
      */
-    public String toJson() {
-        return JSON.serialize(this, true);
-    }
-    
-    /**
-     * @description Model for credential values
-     */
-    public class CredentialValueModel {
-        public String value { get; set; }
-        public Boolean encrypted { get; set; }
-        
-        public CredentialValueModel(String value, Boolean encrypted) {
-            this.value = value;
-            this.encrypted = encrypted;
-        }
+    public ConnectApi.CredentialInput build() {
+        return this.credentialInput;
     }
 } 

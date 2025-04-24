@@ -1,5 +1,5 @@
 /**
- * @description Example usage of the CredentialService classes
+ * @description Example usage of the CredentialService classes with ConnectApi
  * These methods demonstrate how to use the Apex service layer for the Connect API
  * Based on examples from https://gist.github.com/rossbelmont/b797c1871dd1187657db81cf1431b755
  */
@@ -16,15 +16,11 @@ public with sharing class CredentialServiceExamples {
             'some_access'
         );
         
-        // Convert to JSON and send to the Connect API
-        String jsonConfig = externalCredModel.toJson();
-        HttpResponse response = CredentialService.upsertExternalCredential(
-            'OAuthBrowserFlowExternalCredential',
-            jsonConfig
-        );
+        // Build the ConnectApi input and call the service
+        ConnectApi.ExternalCredentialInput input = externalCredModel.build();
+        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(input);
         
-        System.debug('Response status: ' + response.getStatusCode());
-        System.debug('Response body: ' + response.getBody());
+        System.debug('Response: ' + response);
     }
     
     /**
@@ -42,15 +38,11 @@ public with sharing class CredentialServiceExamples {
             'https://something.com/oauth/idp'
         );
         
-        // Convert to JSON and send to the Connect API
-        String jsonConfig = externalCredModel.toJson();
-        HttpResponse response = CredentialService.upsertExternalCredential(
-            'OAuthJwtBearerExternalCredential',
-            jsonConfig
-        );
+        // Build the ConnectApi input and call the service
+        ConnectApi.ExternalCredentialInput input = externalCredModel.build();
+        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(input);
         
-        System.debug('Response status: ' + response.getStatusCode());
-        System.debug('Response body: ' + response.getBody());
+        System.debug('Response: ' + response);
     }
     
     /**
@@ -68,13 +60,11 @@ public with sharing class CredentialServiceExamples {
             'https://something.com/oauth/client-credentials'
         );
         
-        String jsonConfig = externalCredModel.toJson();
-        HttpResponse response = CredentialService.upsertExternalCredential(
-            'OAuthClientCredentialsJwtAssertionExternalCredential',
-            jsonConfig
-        );
+        // Build the ConnectApi input and call the service
+        ConnectApi.ExternalCredentialInput input = externalCredModel.build();
+        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(input);
         
-        System.debug('External Credential Response status: ' + response.getStatusCode());
+        System.debug('External Credential Response: ' + response);
         
         // Then populate the client ID
         CredentialModel credModel = CredentialFactory.createClientIdCredential(
@@ -82,11 +72,10 @@ public with sharing class CredentialServiceExamples {
             'your-client-id'
         );
         
-        String credJson = credModel.toJson();
-        HttpResponse credResponse = CredentialService.populateCredential(credJson);
+        ConnectApi.CredentialInput credInput = credModel.build();
+        ConnectApi.CredentialRepresentation credResponse = CredentialService.populateCredential(credInput);
         
-        System.debug('Credential Response status: ' + credResponse.getStatusCode());
-        System.debug('Credential Response body: ' + credResponse.getBody());
+        System.debug('Credential Response: ' + credResponse);
     }
     
     /**
@@ -96,13 +85,10 @@ public with sharing class CredentialServiceExamples {
         // First create or update the External Credential
         ExternalCredentialModel externalCredModel = CredentialFactory.createAwsSigV4('AwsSv4ExternalCredential');
         
-        String jsonConfig = externalCredModel.toJson();
-        HttpResponse response = CredentialService.upsertExternalCredential(
-            'AwsSv4ExternalCredential',
-            jsonConfig
-        );
+        ConnectApi.ExternalCredentialInput input = externalCredModel.build();
+        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(input);
         
-        System.debug('External Credential Response status: ' + response.getStatusCode());
+        System.debug('External Credential Response: ' + response);
         
         // Then populate the credentials
         CredentialModel credModel = CredentialFactory.createAwsAccessKeyCredential(
@@ -111,11 +97,10 @@ public with sharing class CredentialServiceExamples {
             'accessSecret'
         );
         
-        String credJson = credModel.toJson();
-        HttpResponse credResponse = CredentialService.populateCredential(credJson);
+        ConnectApi.CredentialInput credInput = credModel.build();
+        ConnectApi.CredentialRepresentation credResponse = CredentialService.populateCredential(credInput);
         
-        System.debug('Credential Response status: ' + credResponse.getStatusCode());
-        System.debug('Credential Response body: ' + credResponse.getBody());
+        System.debug('Credential Response: ' + credResponse);
     }
     
     /**
@@ -130,11 +115,10 @@ public with sharing class CredentialServiceExamples {
             'test1234'
         );
         
-        String credJson = credModel.toJson();
-        HttpResponse credResponse = CredentialService.populateCredential(credJson);
+        ConnectApi.CredentialInput credInput = credModel.build();
+        ConnectApi.CredentialRepresentation credResponse = CredentialService.populateCredential(credInput);
         
-        System.debug('Response status: ' + credResponse.getStatusCode());
-        System.debug('Response body: ' + credResponse.getBody());
+        System.debug('Response: ' + credResponse);
     }
     
     /**
@@ -156,10 +140,9 @@ public with sharing class CredentialServiceExamples {
             encryptedFields
         );
         
-        String credJson = credModel.toJson();
-        HttpResponse credResponse = CredentialService.populateCredential(credJson);
+        ConnectApi.CredentialInput credInput = credModel.build();
+        ConnectApi.CredentialRepresentation credResponse = CredentialService.populateCredential(credInput);
         
-        System.debug('Response status: ' + credResponse.getStatusCode());
-        System.debug('Response body: ' + credResponse.getBody());
+        System.debug('Response: ' + credResponse);
     }
 } 

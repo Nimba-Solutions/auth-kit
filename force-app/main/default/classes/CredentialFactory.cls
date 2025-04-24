@@ -1,5 +1,5 @@
 /**
- * @description Factory class for creating credential configurations
+ * @description Factory class for creating credential configurations using ConnectApi classes
  * This class provides methods to easily create common authentication configurations
  * Based on examples from https://gist.github.com/rossbelmont/b797c1871dd1187657db81cf1431b755
  */
@@ -14,11 +14,10 @@ public with sharing class CredentialFactory {
      */
     public static ExternalCredentialModel createOAuthBrowserFlow(String developerName, String authProviderName, String scope) {
         ExternalCredentialModel model = new ExternalCredentialModel();
-        model.developerName = developerName;
-        model.masterLabel = developerName;
-        model.authenticationProtocol = 'OAuth';
-        
-        model.addParameter('AuthProvider', 'AuthProvider', authProviderName)
+        model.setDeveloperName(developerName)
+             .setMasterLabel(developerName)
+             .setAuthenticationProtocol('OAuth')
+             .addParameter('AuthProvider', 'AuthProvider', authProviderName)
              .addParameter('Scope', 'AuthParameter', scope)
              .addPrincipal('NamedPrincipal', 'NamedPrincipal', 1)
              .addPrincipal('PerUserPrincipal', 'PerUserPrincipal', 2);
@@ -47,12 +46,11 @@ public with sharing class CredentialFactory {
         String idpUrl
     ) {
         ExternalCredentialModel model = new ExternalCredentialModel();
-        model.developerName = developerName;
-        model.masterLabel = developerName;
-        model.authenticationProtocol = 'OAuth';
-        model.authenticationProtocolVariant = 'JwtBearer';
-        
-        model.addParameter('SigningCertificate', 'SigningCertificate', certName)
+        model.setDeveloperName(developerName)
+             .setMasterLabel(developerName)
+             .setAuthenticationProtocol('OAuth')
+             .setAuthenticationProtocolVariant('JwtBearer')
+             .addParameter('SigningCertificate', 'SigningCertificate', certName)
              .addParameter('iss', 'JwtBodyClaim', issuer)
              .addParameter('sub', 'JwtBodyClaim', subject)
              .addParameter('aud', 'JwtBodyClaim', audience)
@@ -85,12 +83,11 @@ public with sharing class CredentialFactory {
         String idpUrl
     ) {
         ExternalCredentialModel model = new ExternalCredentialModel();
-        model.developerName = developerName;
-        model.masterLabel = developerName;
-        model.authenticationProtocol = 'OAuth';
-        model.authenticationProtocolVariant = 'ClientCredentialsJwtAssertion';
-        
-        model.addParameter('Scope', 'AuthParameter', scope)
+        model.setDeveloperName(developerName)
+             .setMasterLabel(developerName)
+             .setAuthenticationProtocol('OAuth')
+             .setAuthenticationProtocolVariant('ClientCredentialsJwtAssertion')
+             .addParameter('Scope', 'AuthParameter', scope)
              .addParameter('Identity Provider URL', 'AuthProviderUrl', idpUrl)
              .addParameter('SigningCertificate', 'SigningCertificate', certName)
              .addParameter('iss', 'JwtBodyClaim', issuer)
@@ -129,11 +126,10 @@ public with sharing class CredentialFactory {
      */
     public static ExternalCredentialModel createAwsSigV4(String developerName) {
         ExternalCredentialModel model = new ExternalCredentialModel();
-        model.developerName = developerName;
-        model.masterLabel = developerName;
-        model.authenticationProtocol = 'AwsSig4';
-        
-        model.addPrincipal('NamedPrincipal', 'NamedPrincipal', 1);
+        model.setDeveloperName(developerName)
+             .setMasterLabel(developerName)
+             .setAuthenticationProtocol('AwsSig4')
+             .addPrincipal('NamedPrincipal', 'NamedPrincipal', 1);
         
         return model;
     }
