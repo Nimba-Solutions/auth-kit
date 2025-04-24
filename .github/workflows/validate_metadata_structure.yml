@@ -42,14 +42,26 @@ jobs:
             echo "" >> report.md
             echo "## ❌ Unsupported Types" >> report.md
             echo "" >> report.md
-            echo "The following metadata types are not packageable and should be removed from \`force-app/main/default\`:" >> report.md
             
             if [[ -n "${{ steps.validate.outputs.invalid_dirs }}" ]]; then
-              echo "" >> report.md
+              echo "<pre>" >> report.md
+              echo "📁 force-app/" >> report.md
+              echo "└── 📁 main/" >> report.md
+              echo "    └── 📁 default/" >> report.md
               
-              for dir in $(echo '${{ steps.validate.outputs.invalid_dirs }}' | jq -r '.[]'); do
-                echo "- \`$dir\`" >> report.md
+              dirs=($(echo '${{ steps.validate.outputs.invalid_dirs }}' | jq -r '.[]'))
+              count=${#dirs[@]}
+              
+              for i in "${!dirs[@]}"; do
+                dir=${dirs[$i]}
+                if [[ $i -eq $(($count-1)) ]]; then
+                  echo "        └── ❌ ${dir}" >> report.md
+                else
+                  echo "        ├── ❌ ${dir}" >> report.md
+                fi
               done
+              
+              echo "</pre>" >> report.md
             fi
             
             echo "" >> report.md
@@ -60,11 +72,10 @@ jobs:
             echo "<pre>" >> report.md
             echo "📁                         # Project Root" >> report.md
             echo "│" >> report.md
-            echo "├── 📁 unpackaged          # Non-packaged content" >> report.md
-            echo "│   ├── 📁 pre             # Deployed BEFORE package installation" >> report.md
-            echo "│   └── 📁 post            # Deployed AFTER package installation" >> report.md
-            echo "│" >> report.md
-            echo "└── 📁 [custom-directory]  # For project-specific organization" >> report.md
+            echo "└── 📁 unpackaged" >> report.md
+            echo "    ├── 📁 pre                 # Deployed BEFORE force-app" >> report.md
+            echo "    ├── 📁 post                # Deployed AFTER force-app" >> report.md
+            echo "    └── 📁 [custom-directory]  # For project-specific organization" >> report.md
             echo "</pre>" >> report.md
             echo "" >> report.md
             echo "If you need help deciding where to put things, review [Metadata Retrieval FAQs](https://github.com/Nimba-Solutions/.github/wiki/Metadata-Retrieval-FAQs)" >> report.md
