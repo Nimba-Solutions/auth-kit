@@ -38,15 +38,13 @@ jobs:
         id: generate_report
         run: |
           if [[ "${{ steps.validate.outputs.has_errors }}" == "true" ]]; then
-            echo "# Salesforce Metadata Structure Validation Results" > report.md
+            echo "# Salesforce Metadata Validation Report" > report.md
             echo "" >> report.md
-            echo "## ❌ Validation Failed" >> report.md
+            echo "## ❌ Unsupported Types`" >> report.md
             echo "" >> report.md
-            echo "Some folders in force-app/main/default are not packageable and should be relocated." >> report.md
+            echo "The following metadata types are not packageable and should be relocated:" >> report.md
             
             if [[ -n "${{ steps.validate.outputs.invalid_dirs }}" ]]; then
-              echo "" >> report.md
-              echo "### Unsupported Types" >> report.md
               echo "" >> report.md
               
               for dir in $(echo '${{ steps.validate.outputs.invalid_dirs }}' | jq -r '.[]'); do
@@ -57,7 +55,7 @@ jobs:
             echo "" >> report.md
             echo "### Recommendations" >> report.md
             echo "" >> report.md
-            echo "Move all unsupported Metadata Types to one of the following directories:" >> report.md
+            echo "Move all unsupported metadata types to one of the following directories:" >> report.md
             echo "- unpackaged/pre" >> report.md
             echo "- unpackaged/post" >> report.md
             echo "- a custom directory" >> report.md
