@@ -1,0 +1,160 @@
+{
+    "currentVersion": "4.7.0",
+    "engines": [
+        {
+            "name": "pmd",
+            "targetPatterns": [
+                "**/*.cls",
+                "**/*.trigger",
+                "**/*.java",
+                "**/*.page",
+                "**/*.component",
+                "**/*.xml",
+                "!**/node_modules/**"
+            ],
+            "supportedLanguages": [
+                "apex",
+                "vf",
+                "xml"
+            ],
+            "disabled": false
+        },
+        {
+            "name": "eslint",
+            "targetPatterns": [
+                "**/*.js",
+                "!**/node_modules/**",
+                "!**/bower_components/**"
+            ],
+            "disabled": false
+        },
+        {
+            "name": "eslint-lwc",
+            "targetPatterns": [
+                "**/*.js",
+                "!**/node_modules/**"
+            ],
+            "disabled": true
+        },
+        {
+            "name": "eslint-typescript",
+            "targetPatterns": [
+                "**/*.ts",
+                "!**/node_modules/**",
+                "!**/bower_components/**"
+            ],
+            "disabled": false
+        },
+        {
+            "name": "retire-js",
+            "targetPatterns": [],
+            "disabled": false
+        },
+        {
+            "name": "cpd",
+            "targetPatterns": [
+                "**/*.cls",
+                "**/*.trigger",
+                "**/*.java",
+                "**/*.page",
+                "**/*.component",
+                "**/*.xml",
+                "!**/node_modules/**",
+                "!**/*-meta.xml"
+            ],
+            "disabled": true,
+            "minimumTokens": 100
+        },
+        {
+            "name": "pmd-appexchange",
+            "targetPatterns": [
+                "**/*.cls",
+                "**/*.trigger",
+                "**/*.java",
+                "**/*.page",
+                "**/*.component",
+                "**/*.xml",
+                "!**/node_modules/**",
+                "**/*.js",
+                "**/*.authprovider",
+                "**/*.bot",
+                "**/*.brandingSet",
+                "**/*.cachePartition",
+                "**/*.callCenter",
+                "**/*.communityTemplateDefinition",
+                "**/*.communityThemeDefinition",
+                "**/*.connectedApp",
+                "**/*.ConversationVendorInformation",
+                "**/*.corsWhitelistOrigin",
+                "**/*.cspTrustedSite",
+                "**/*.customHelpMenuSection",
+                "**/*.customPermission",
+                "**/*.dashboard",
+                "**/*.dataConnectorIngestApi",
+                "**/*.dataPackageKitDefinition",
+                "**/*.DataPackageKitObject",
+                "**/*.dataSource",
+                "**/*.dataSourceBundleDefinition",
+                "**/*.dataSourceObject",
+                "**/*.dataSrcDataModelFieldMap",
+                "**/*.dataStreamDefinition",
+                "**/*.dataStreamTemplate",
+                "**/*.duplicateRule",
+                "**/*.externalDataConnector",
+                "**/*.featureParameterBoolean",
+                "**/*.featureParameterInteger",
+                "**/*.flexipage",
+                "**/*.flow",
+                "**/*.globalValueSet",
+                "**/*.globalValueSetTranslation",
+                "**/*.homePageComponent",
+                "**/*.homePageLayout",
+                "**/*.indx",
+                "**/*.labels",
+                "**/*.layout",
+                "**/*.letter",
+                "**/*.lightningBolt",
+                "**/*.lightningExperienceTheme",
+                "**/*.marketingappextension",
+                "**/*.matchingRule",
+                "**/*.messageChannel",
+                "**/*.mktDataTranObject",
+                "**/*.mlDomain",
+                "**/*.namedCredential",
+                "**/*.navigationMenu",
+                "**/*.notiftype",
+                "**/*.object",
+                "**/*.objectSourceTargetMap",
+                "**/*.objectTranslation",
+                "**/*.pathAssistant",
+                "**/*.permissionset",
+                "**/*.permissionsetgroup",
+                "**/*.profile",
+                "**/*.prompt",
+                "**/*.quickAction",
+                "**/*.remoteSite",
+                "**/*.report",
+                "**/*.reportType",
+                "**/*.sharingSet",
+                "**/*.snapshot",
+                "**/*.tab",
+                "**/*.translation",
+                "**/*.wapp",
+                "**/*.wds",
+                "**/*.weblink",
+                "**/*.workflow",
+                "**/*.xmd"
+            ],
+            "disabled": true
+        },
+        {
+            "name": "sfge",
+            "targetPatterns": [
+                "**/*.cls",
+                "**/*.trigger"
+            ],
+            "disabled": false
+        }
+    ],
+    "javaHome": "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.5.11-hotspot"
+}
