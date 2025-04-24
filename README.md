@@ -19,6 +19,6 @@ Designed for Salesforce developers and administrators, AuthKit provides user-fri
 2. Submit a Pull Request to the `main` branch
 
 
-# Credit
+## Credit
 
 This project was partially inspired by [this excellent gist](./docs/Populating%20Credentials%20with%20the%20Connect%20API.md) by GitHub user [rossbelmont](https://gist.github.com/rossbelmont).
