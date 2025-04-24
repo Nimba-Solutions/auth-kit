@@ -70,7 +70,7 @@ jobs:
             echo "Move all unsupported metadata types to one of the following directories:" >> report.md
             echo "" >> report.md
             echo "<pre>" >> report.md
-            echo "📁                         # Project Root" >> report.md
+            echo "📁                             # Project Root" >> report.md
             echo "│" >> report.md
             echo "└── 📁 unpackaged" >> report.md
             echo "    ├── 📁 pre                 # Deployed BEFORE force-app" >> report.md
