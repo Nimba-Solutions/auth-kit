@@ -1,5 +1,5 @@
 /**
- * @description Example usage of the CredentialService classes with ConnectApi
+ * @description Example usage of the CredentialService classes with DTOs
  * These methods demonstrate how to use the Apex service layer for the Connect API
  * Based on examples from https://gist.github.com/rossbelmont/b797c1871dd1187657db81cf1431b755
  */
@@ -9,16 +9,15 @@ public with sharing class CredentialServiceExamples {
      * @description Example of creating an OAuth Browser Flow External Credential
      */
     public static void createOAuthBrowserFlowExample() {
-        // Create the External Credential model
-        ExternalCredentialModel externalCredModel = CredentialFactory.createOAuthBrowserFlow(
+        // Create the External Credential DTO
+        ExternalCredentialDTO dto = CredentialFactory.createOAuthBrowserFlow(
             'OAuthBrowserFlowExternalCredential',
             'authProvider',
             'some_access'
         );
         
-        // Build the ConnectApi input and call the service
-        ConnectApi.ExternalCredentialInput input = externalCredModel.build();
-        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(input);
+        // Call the service with the DTO
+        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(dto);
         
         System.debug('Response: ' + response);
     }
@@ -27,8 +26,8 @@ public with sharing class CredentialServiceExamples {
      * @description Example of creating an OAuth JWT Bearer Flow External Credential
      */
     public static void createOAuthJwtBearerExample() {
-        // Create the External Credential model
-        ExternalCredentialModel externalCredModel = CredentialFactory.createOAuthJwtBearer(
+        // Create the External Credential DTO
+        ExternalCredentialDTO dto = CredentialFactory.createOAuthJwtBearer(
             'OAuthJwtBearerExternalCredential',
             'yourCert',
             'iss',
@@ -38,9 +37,8 @@ public with sharing class CredentialServiceExamples {
             'https://something.com/oauth/idp'
         );
         
-        // Build the ConnectApi input and call the service
-        ConnectApi.ExternalCredentialInput input = externalCredModel.build();
-        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(input);
+        // Call the service with the DTO
+        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(dto);
         
         System.debug('Response: ' + response);
     }
@@ -50,7 +48,7 @@ public with sharing class CredentialServiceExamples {
      */
     public static void createOAuthClientCredentialsJwtAssertionExample() {
         // First create or update the External Credential
-        ExternalCredentialModel externalCredModel = CredentialFactory.createOAuthClientCredentialsJwtAssertion(
+        ExternalCredentialDTO dto = CredentialFactory.createOAuthClientCredentialsJwtAssertion(
             'OAuthClientCredentialsJwtAssertionExternalCredential',
             'yourCert',
             'iss',
@@ -60,20 +58,18 @@ public with sharing class CredentialServiceExamples {
             'https://something.com/oauth/client-credentials'
         );
         
-        // Build the ConnectApi input and call the service
-        ConnectApi.ExternalCredentialInput input = externalCredModel.build();
-        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(input);
+        // Call the service with the DTO
+        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(dto);
         
         System.debug('External Credential Response: ' + response);
         
         // Then populate the client ID
-        CredentialModel credModel = CredentialFactory.createClientIdCredential(
+        CredentialDTO credDto = CredentialFactory.createClientIdCredential(
             'OAuthClientCredentialsJwtAssertionExternalCredential',
             'your-client-id'
         );
         
-        ConnectApi.CredentialInput credInput = credModel.build();
-        ConnectApi.CredentialRepresentation credResponse = CredentialService.populateCredential(credInput);
+        ConnectApi.CredentialRepresentation credResponse = CredentialService.populateCredential(credDto);
         
         System.debug('Credential Response: ' + credResponse);
     }
@@ -83,22 +79,20 @@ public with sharing class CredentialServiceExamples {
      */
     public static void createAwsSigV4Example() {
         // First create or update the External Credential
-        ExternalCredentialModel externalCredModel = CredentialFactory.createAwsSigV4('AwsSv4ExternalCredential');
+        ExternalCredentialDTO dto = CredentialFactory.createAwsSigV4('AwsSv4ExternalCredential');
         
-        ConnectApi.ExternalCredentialInput input = externalCredModel.build();
-        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(input);
+        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(dto);
         
         System.debug('External Credential Response: ' + response);
         
         // Then populate the credentials
-        CredentialModel credModel = CredentialFactory.createAwsAccessKeyCredential(
+        CredentialDTO credDto = CredentialFactory.createAwsAccessKeyCredential(
             'AwsSv4ExternalCredential',
             'accessKey',
             'accessSecret'
         );
         
-        ConnectApi.CredentialInput credInput = credModel.build();
-        ConnectApi.CredentialRepresentation credResponse = CredentialService.populateCredential(credInput);
+        ConnectApi.CredentialRepresentation credResponse = CredentialService.populateCredential(credDto);
         
         System.debug('Credential Response: ' + credResponse);
     }
@@ -107,7 +101,7 @@ public with sharing class CredentialServiceExamples {
      * @description Example of creating a Basic Authentication credential
      */
     public static void createBasicAuthExample() {
-        CredentialModel credModel = CredentialFactory.createBasicAuthCredential(
+        CredentialDTO dto = CredentialFactory.createBasicAuthCredential(
             'BasicExternalCredential',
             'NamedPrincipal',
             'NamedPrincipal',
@@ -115,10 +109,9 @@ public with sharing class CredentialServiceExamples {
             'test1234'
         );
         
-        ConnectApi.CredentialInput credInput = credModel.build();
-        ConnectApi.CredentialRepresentation credResponse = CredentialService.populateCredential(credInput);
+        ConnectApi.CredentialRepresentation response = CredentialService.populateCredential(dto);
         
-        System.debug('Response: ' + credResponse);
+        System.debug('Response: ' + response);
     }
     
     /**
@@ -132,7 +125,7 @@ public with sharing class CredentialServiceExamples {
         
         Set<String> encryptedFields = new Set<String>{'yourApiKeyHeaderNameHere'};
         
-        CredentialModel credModel = CredentialFactory.createCustomCredential(
+        CredentialDTO dto = CredentialFactory.createCustomCredential(
             'CustomExternalCredential',
             'NamedPrincipal',
             'NamedPrincipal',
@@ -140,9 +133,34 @@ public with sharing class CredentialServiceExamples {
             encryptedFields
         );
         
-        ConnectApi.CredentialInput credInput = credModel.build();
-        ConnectApi.CredentialRepresentation credResponse = CredentialService.populateCredential(credInput);
+        ConnectApi.CredentialRepresentation response = CredentialService.populateCredential(dto);
         
-        System.debug('Response: ' + credResponse);
+        System.debug('Response: ' + response);
+    }
+    
+    /**
+     * @description Example of creating an External Credential from JSON
+     */
+    public static void createExternalCredentialFromJsonExample() {
+        // This could come from a custom metadata type, static resource, or other source
+        String jsonConfig = '{"developerName":"JsonExternalCredential","masterLabel":"JSON Example","authenticationProtocol":"OAuth","parameters":[{"parameterName":"AuthProvider","parameterType":"AuthProvider","parameterValue":"authProvider"},{"parameterName":"Scope","parameterType":"AuthParameter","parameterValue":"some_access"}],"principals":[{"principalName":"NamedPrincipal","principalType":"NamedPrincipal","sequenceNumber":1}]}';
+        
+        // Directly deserialize and use the JSON
+        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredentialFromJson(jsonConfig);
+        
+        System.debug('Response: ' + response);
+    }
+    
+    /**
+     * @description Example of creating a Credential from JSON
+     */
+    public static void createCredentialFromJsonExample() {
+        // This could come from a secure external system or vault
+        String jsonConfig = '{"externalCredential":"JsonExternalCredential","principalName":"NamedPrincipal","principalType":"NamedPrincipal","credentials":{"apiKey":{"value":"your-api-key","encrypted":true}}}';
+        
+        // Directly deserialize and use the JSON
+        ConnectApi.CredentialRepresentation response = CredentialService.populateCredentialFromJson(jsonConfig);
+        
+        System.debug('Response: ' + response);
     }
 } 

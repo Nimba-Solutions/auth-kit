@@ -1,5 +1,5 @@
 /**
- * @description Factory class for creating credential configurations using ConnectApi classes
+ * @description Factory class for creating credential DTOs
  * This class provides methods to easily create common authentication configurations
  * Based on examples from https://gist.github.com/rossbelmont/b797c1871dd1187657db81cf1431b755
  */
@@ -10,19 +10,39 @@ public with sharing class CredentialFactory {
      * @param developerName The developer name for the External Credential
      * @param authProviderName The Auth Provider name to use
      * @param scope The OAuth scope
-     * @return ExternalCredentialModel The configured External Credential model
+     * @return ExternalCredentialDTO The configured External Credential DTO
      */
-    public static ExternalCredentialModel createOAuthBrowserFlow(String developerName, String authProviderName, String scope) {
-        ExternalCredentialModel model = new ExternalCredentialModel();
-        model.setDeveloperName(developerName)
-             .setMasterLabel(developerName)
-             .setAuthenticationProtocol('OAuth')
-             .addParameter('AuthProvider', 'AuthProvider', authProviderName)
-             .addParameter('Scope', 'AuthParameter', scope)
-             .addPrincipal('NamedPrincipal', 'NamedPrincipal', 1)
-             .addPrincipal('PerUserPrincipal', 'PerUserPrincipal', 2);
+    public static ExternalCredentialDTO createOAuthBrowserFlow(String developerName, String authProviderName, String scope) {
+        ExternalCredentialDTO dto = new ExternalCredentialDTO();
+        dto.developerName = developerName;
+        dto.masterLabel = developerName;
+        dto.authenticationProtocol = 'OAuth';
         
-        return model;
+        ExternalCredentialDTO.ParameterDTO authProviderParam = new ExternalCredentialDTO.ParameterDTO();
+        authProviderParam.parameterName = 'AuthProvider';
+        authProviderParam.parameterType = 'AuthProvider';
+        authProviderParam.parameterValue = authProviderName;
+        dto.parameters.add(authProviderParam);
+        
+        ExternalCredentialDTO.ParameterDTO scopeParam = new ExternalCredentialDTO.ParameterDTO();
+        scopeParam.parameterName = 'Scope';
+        scopeParam.parameterType = 'AuthParameter';
+        scopeParam.parameterValue = scope;
+        dto.parameters.add(scopeParam);
+        
+        ExternalCredentialDTO.PrincipalDTO namedPrincipal = new ExternalCredentialDTO.PrincipalDTO();
+        namedPrincipal.principalName = 'NamedPrincipal';
+        namedPrincipal.principalType = 'NamedPrincipal';
+        namedPrincipal.sequenceNumber = 1;
+        dto.principals.add(namedPrincipal);
+        
+        ExternalCredentialDTO.PrincipalDTO perUserPrincipal = new ExternalCredentialDTO.PrincipalDTO();
+        perUserPrincipal.principalName = 'PerUserPrincipal';
+        perUserPrincipal.principalType = 'PerUserPrincipal';
+        perUserPrincipal.sequenceNumber = 2;
+        dto.principals.add(perUserPrincipal);
+        
+        return dto;
     }
     
     /**
@@ -34,9 +54,9 @@ public with sharing class CredentialFactory {
      * @param audience The JWT audience claim
      * @param scope The OAuth scope
      * @param idpUrl The Identity Provider URL
-     * @return ExternalCredentialModel The configured External Credential model
+     * @return ExternalCredentialDTO The configured External Credential DTO
      */
-    public static ExternalCredentialModel createOAuthJwtBearer(
+    public static ExternalCredentialDTO createOAuthJwtBearer(
         String developerName, 
         String certName, 
         String issuer, 
@@ -45,21 +65,66 @@ public with sharing class CredentialFactory {
         String scope, 
         String idpUrl
     ) {
-        ExternalCredentialModel model = new ExternalCredentialModel();
-        model.setDeveloperName(developerName)
-             .setMasterLabel(developerName)
-             .setAuthenticationProtocol('OAuth')
-             .setAuthenticationProtocolVariant('JwtBearer')
-             .addParameter('SigningCertificate', 'SigningCertificate', certName)
-             .addParameter('iss', 'JwtBodyClaim', issuer)
-             .addParameter('sub', 'JwtBodyClaim', subject)
-             .addParameter('aud', 'JwtBodyClaim', audience)
-             .addParameter('Scope', 'AuthParameter', scope)
-             .addParameter('Identity Provider URL', 'AuthProviderUrl', idpUrl)
-             .addPrincipal('NamedPrincipal', 'NamedPrincipal', 1)
-             .addPrincipal('PerUserPrincipal', 'PerUserPrincipal', 2);
+        ExternalCredentialDTO dto = new ExternalCredentialDTO();
+        dto.developerName = developerName;
+        dto.masterLabel = developerName;
+        dto.authenticationProtocol = 'OAuth';
+        dto.authenticationProtocolVariant = 'JwtBearer';
         
-        return model;
+        // Add certificate parameter
+        ExternalCredentialDTO.ParameterDTO certParam = new ExternalCredentialDTO.ParameterDTO();
+        certParam.parameterName = 'SigningCertificate';
+        certParam.parameterType = 'SigningCertificate';
+        certParam.parameterValue = certName;
+        dto.parameters.add(certParam);
+        
+        // Add JWT claims
+        ExternalCredentialDTO.ParameterDTO issParam = new ExternalCredentialDTO.ParameterDTO();
+        issParam.parameterName = 'iss';
+        issParam.parameterType = 'JwtBodyClaim';
+        issParam.parameterValue = issuer;
+        dto.parameters.add(issParam);
+        
+        ExternalCredentialDTO.ParameterDTO subParam = new ExternalCredentialDTO.ParameterDTO();
+        subParam.parameterName = 'sub';
+        subParam.parameterType = 'JwtBodyClaim';
+        subParam.parameterValue = subject;
+        dto.parameters.add(subParam);
+        
+        ExternalCredentialDTO.ParameterDTO audParam = new ExternalCredentialDTO.ParameterDTO();
+        audParam.parameterName = 'aud';
+        audParam.parameterType = 'JwtBodyClaim';
+        audParam.parameterValue = audience;
+        dto.parameters.add(audParam);
+        
+        // Add scope
+        ExternalCredentialDTO.ParameterDTO scopeParam = new ExternalCredentialDTO.ParameterDTO();
+        scopeParam.parameterName = 'Scope';
+        scopeParam.parameterType = 'AuthParameter';
+        scopeParam.parameterValue = scope;
+        dto.parameters.add(scopeParam);
+        
+        // Add IDP URL
+        ExternalCredentialDTO.ParameterDTO idpUrlParam = new ExternalCredentialDTO.ParameterDTO();
+        idpUrlParam.parameterName = 'Identity Provider URL';
+        idpUrlParam.parameterType = 'AuthProviderUrl';
+        idpUrlParam.parameterValue = idpUrl;
+        dto.parameters.add(idpUrlParam);
+        
+        // Add principals
+        ExternalCredentialDTO.PrincipalDTO namedPrincipal = new ExternalCredentialDTO.PrincipalDTO();
+        namedPrincipal.principalName = 'NamedPrincipal';
+        namedPrincipal.principalType = 'NamedPrincipal';
+        namedPrincipal.sequenceNumber = 1;
+        dto.principals.add(namedPrincipal);
+        
+        ExternalCredentialDTO.PrincipalDTO perUserPrincipal = new ExternalCredentialDTO.PrincipalDTO();
+        perUserPrincipal.principalName = 'PerUserPrincipal';
+        perUserPrincipal.principalType = 'PerUserPrincipal';
+        perUserPrincipal.sequenceNumber = 2;
+        dto.principals.add(perUserPrincipal);
+        
+        return dto;
     }
     
     /**
@@ -71,9 +136,9 @@ public with sharing class CredentialFactory {
      * @param audience The JWT audience claim
      * @param scope The OAuth scope
      * @param idpUrl The Identity Provider URL
-     * @return ExternalCredentialModel The configured External Credential model
+     * @return ExternalCredentialDTO The configured External Credential DTO
      */
-    public static ExternalCredentialModel createOAuthClientCredentialsJwtAssertion(
+    public static ExternalCredentialDTO createOAuthClientCredentialsJwtAssertion(
         String developerName, 
         String certName, 
         String issuer, 
@@ -82,56 +147,103 @@ public with sharing class CredentialFactory {
         String scope, 
         String idpUrl
     ) {
-        ExternalCredentialModel model = new ExternalCredentialModel();
-        model.setDeveloperName(developerName)
-             .setMasterLabel(developerName)
-             .setAuthenticationProtocol('OAuth')
-             .setAuthenticationProtocolVariant('ClientCredentialsJwtAssertion')
-             .addParameter('Scope', 'AuthParameter', scope)
-             .addParameter('Identity Provider URL', 'AuthProviderUrl', idpUrl)
-             .addParameter('SigningCertificate', 'SigningCertificate', certName)
-             .addParameter('iss', 'JwtBodyClaim', issuer)
-             .addParameter('sub', 'JwtBodyClaim', subject)
-             .addParameter('aud', 'JwtBodyClaim', audience)
-             .addPrincipal('NamedPrincipal', 'NamedPrincipal', 1);
+        ExternalCredentialDTO dto = new ExternalCredentialDTO();
+        dto.developerName = developerName;
+        dto.masterLabel = developerName;
+        dto.authenticationProtocol = 'OAuth';
+        dto.authenticationProtocolVariant = 'ClientCredentialsJwtAssertion';
         
-        return model;
+        // Add scope
+        ExternalCredentialDTO.ParameterDTO scopeParam = new ExternalCredentialDTO.ParameterDTO();
+        scopeParam.parameterName = 'Scope';
+        scopeParam.parameterType = 'AuthParameter';
+        scopeParam.parameterValue = scope;
+        dto.parameters.add(scopeParam);
+        
+        // Add IDP URL
+        ExternalCredentialDTO.ParameterDTO idpUrlParam = new ExternalCredentialDTO.ParameterDTO();
+        idpUrlParam.parameterName = 'Identity Provider URL';
+        idpUrlParam.parameterType = 'AuthProviderUrl';
+        idpUrlParam.parameterValue = idpUrl;
+        dto.parameters.add(idpUrlParam);
+        
+        // Add certificate parameter
+        ExternalCredentialDTO.ParameterDTO certParam = new ExternalCredentialDTO.ParameterDTO();
+        certParam.parameterName = 'SigningCertificate';
+        certParam.parameterType = 'SigningCertificate';
+        certParam.parameterValue = certName;
+        dto.parameters.add(certParam);
+        
+        // Add JWT claims
+        ExternalCredentialDTO.ParameterDTO issParam = new ExternalCredentialDTO.ParameterDTO();
+        issParam.parameterName = 'iss';
+        issParam.parameterType = 'JwtBodyClaim';
+        issParam.parameterValue = issuer;
+        dto.parameters.add(issParam);
+        
+        ExternalCredentialDTO.ParameterDTO subParam = new ExternalCredentialDTO.ParameterDTO();
+        subParam.parameterName = 'sub';
+        subParam.parameterType = 'JwtBodyClaim';
+        subParam.parameterValue = subject;
+        dto.parameters.add(subParam);
+        
+        ExternalCredentialDTO.ParameterDTO audParam = new ExternalCredentialDTO.ParameterDTO();
+        audParam.parameterName = 'aud';
+        audParam.parameterType = 'JwtBodyClaim';
+        audParam.parameterValue = audience;
+        dto.parameters.add(audParam);
+        
+        // Add principal
+        ExternalCredentialDTO.PrincipalDTO namedPrincipal = new ExternalCredentialDTO.PrincipalDTO();
+        namedPrincipal.principalName = 'NamedPrincipal';
+        namedPrincipal.principalType = 'NamedPrincipal';
+        namedPrincipal.sequenceNumber = 1;
+        dto.principals.add(namedPrincipal);
+        
+        return dto;
     }
     
     /**
      * @description Creates a Client ID credential for OAuth Client Credentials with JWT Assertion
      * @param externalCredentialName The External Credential developer name
      * @param clientId The client ID
-     * @return CredentialModel The configured Credential model
+     * @return CredentialDTO The configured Credential DTO
      */
-    public static CredentialModel createClientIdCredential(
+    public static CredentialDTO createClientIdCredential(
         String externalCredentialName,
         String clientId
     ) {
-        CredentialModel model = new CredentialModel(
-            externalCredentialName,
-            'NamedPrincipal',
-            'NamedPrincipal'
-        );
+        CredentialDTO dto = new CredentialDTO();
+        dto.externalCredential = externalCredentialName;
+        dto.principalName = 'NamedPrincipal';
+        dto.principalType = 'NamedPrincipal';
         
-        model.addCredential('clientId', clientId, false);
+        CredentialDTO.CredentialValueDTO clientIdValue = new CredentialDTO.CredentialValueDTO();
+        clientIdValue.value = clientId;
+        clientIdValue.encrypted = false;
+        dto.credentials.put('clientId', clientIdValue);
         
-        return model;
+        return dto;
     }
     
     /**
      * @description Creates an AWS SigV4 External Credential configuration for Access Key and Secret
      * @param developerName The developer name for the External Credential
-     * @return ExternalCredentialModel The configured External Credential model
+     * @return ExternalCredentialDTO The configured External Credential DTO
      */
-    public static ExternalCredentialModel createAwsSigV4(String developerName) {
-        ExternalCredentialModel model = new ExternalCredentialModel();
-        model.setDeveloperName(developerName)
-             .setMasterLabel(developerName)
-             .setAuthenticationProtocol('AwsSig4')
-             .addPrincipal('NamedPrincipal', 'NamedPrincipal', 1);
+    public static ExternalCredentialDTO createAwsSigV4(String developerName) {
+        ExternalCredentialDTO dto = new ExternalCredentialDTO();
+        dto.developerName = developerName;
+        dto.masterLabel = developerName;
+        dto.authenticationProtocol = 'AwsSig4';
         
-        return model;
+        ExternalCredentialDTO.PrincipalDTO namedPrincipal = new ExternalCredentialDTO.PrincipalDTO();
+        namedPrincipal.principalName = 'NamedPrincipal';
+        namedPrincipal.principalType = 'NamedPrincipal';
+        namedPrincipal.sequenceNumber = 1;
+        dto.principals.add(namedPrincipal);
+        
+        return dto;
     }
     
     /**
@@ -139,23 +251,29 @@ public with sharing class CredentialFactory {
      * @param externalCredentialName The External Credential developer name
      * @param accessKey The AWS access key
      * @param secretKey The AWS secret key
-     * @return CredentialModel The configured Credential model
+     * @return CredentialDTO The configured Credential DTO
      */
-    public static CredentialModel createAwsAccessKeyCredential(
+    public static CredentialDTO createAwsAccessKeyCredential(
         String externalCredentialName,
         String accessKey,
         String secretKey
     ) {
-        CredentialModel model = new CredentialModel(
-            externalCredentialName,
-            'NamedPrincipal',
-            'NamedPrincipal'
-        );
+        CredentialDTO dto = new CredentialDTO();
+        dto.externalCredential = externalCredentialName;
+        dto.principalName = 'NamedPrincipal';
+        dto.principalType = 'NamedPrincipal';
         
-        model.addCredential('awsAccessKeyId', accessKey, false)
-             .addCredential('awsSecretAccessKey', secretKey, true);
+        CredentialDTO.CredentialValueDTO accessKeyValue = new CredentialDTO.CredentialValueDTO();
+        accessKeyValue.value = accessKey;
+        accessKeyValue.encrypted = false;
+        dto.credentials.put('awsAccessKeyId', accessKeyValue);
         
-        return model;
+        CredentialDTO.CredentialValueDTO secretKeyValue = new CredentialDTO.CredentialValueDTO();
+        secretKeyValue.value = secretKey;
+        secretKeyValue.encrypted = true;
+        dto.credentials.put('awsSecretAccessKey', secretKeyValue);
+        
+        return dto;
     }
     
     /**
@@ -165,25 +283,31 @@ public with sharing class CredentialFactory {
      * @param principalType The principal type
      * @param username The username
      * @param password The password
-     * @return CredentialModel The configured Credential model
+     * @return CredentialDTO The configured Credential DTO
      */
-    public static CredentialModel createBasicAuthCredential(
+    public static CredentialDTO createBasicAuthCredential(
         String externalCredentialName,
         String principalName,
         String principalType,
         String username,
         String password
     ) {
-        CredentialModel model = new CredentialModel(
-            externalCredentialName,
-            principalName,
-            principalType
-        );
+        CredentialDTO dto = new CredentialDTO();
+        dto.externalCredential = externalCredentialName;
+        dto.principalName = principalName;
+        dto.principalType = principalType;
         
-        model.addCredential('username', username, false)
-             .addCredential('password', password, true);
+        CredentialDTO.CredentialValueDTO usernameValue = new CredentialDTO.CredentialValueDTO();
+        usernameValue.value = username;
+        usernameValue.encrypted = false;
+        dto.credentials.put('username', usernameValue);
         
-        return model;
+        CredentialDTO.CredentialValueDTO passwordValue = new CredentialDTO.CredentialValueDTO();
+        passwordValue.value = password;
+        passwordValue.encrypted = true;
+        dto.credentials.put('password', passwordValue);
+        
+        return dto;
     }
     
     /**
@@ -193,26 +317,27 @@ public with sharing class CredentialFactory {
      * @param principalType The principal type
      * @param credentialMap Map of credential name to value pairs
      * @param encryptedFields Set of field names that should be encrypted
-     * @return CredentialModel The configured Credential model
+     * @return CredentialDTO The configured Credential DTO
      */
-    public static CredentialModel createCustomCredential(
+    public static CredentialDTO createCustomCredential(
         String externalCredentialName,
         String principalName,
         String principalType,
         Map<String, String> credentialMap,
         Set<String> encryptedFields
     ) {
-        CredentialModel model = new CredentialModel(
-            externalCredentialName,
-            principalName,
-            principalType
-        );
+        CredentialDTO dto = new CredentialDTO();
+        dto.externalCredential = externalCredentialName;
+        dto.principalName = principalName;
+        dto.principalType = principalType;
         
         for (String key : credentialMap.keySet()) {
-            Boolean encrypted = encryptedFields.contains(key);
-            model.addCredential(key, credentialMap.get(key), encrypted);
+            CredentialDTO.CredentialValueDTO valueDto = new CredentialDTO.CredentialValueDTO();
+            valueDto.value = credentialMap.get(key);
+            valueDto.encrypted = encryptedFields.contains(key);
+            dto.credentials.put(key, valueDto);
         }
         
-        return model;
+        return dto;
     }
 } 
