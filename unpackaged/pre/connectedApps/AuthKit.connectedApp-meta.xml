@@ -4,13 +4,15 @@
     <label>AuthKit</label>
     <description>Self-org JWT authentication for API callouts</description>
     <oauthConfig>
-        <callbackUrl>https://login.salesforce.com/services/oauth2/success</callbackUrl>
+        <callbackUrl>_ORG_DOMAIN_/services/oauth2/success</callbackUrl>
         <certificate>AuthKit</certificate>
         <isAdminApproved>true</isAdminApproved>
         <isConsumerSecretOptional>false</isConsumerSecretOptional>
         <isIntrospectAllTokens>false</isIntrospectAllTokens>
         <isPkceRequired>false</isPkceRequired>
-        <scopes>Api RefreshToken</scopes>
+        <scopes>Api</scopes>
+        <scopes>Full</scopes>
+        <scopes>RefreshToken</scopes>
     </oauthConfig>
     <oauthPolicy>
         <ipRelaxation>ENFORCE</ipRelaxation>

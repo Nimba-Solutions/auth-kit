@@ -187,7 +187,7 @@ public with sharing class CredentialServiceExamples {
             ExternalCredentialDTO.ParameterDTO loginUrlParam = new ExternalCredentialDTO.ParameterDTO();
             loginUrlParam.parameterName = 'Login URL';
             loginUrlParam.parameterType = 'AuthParameter';
-            loginUrlParam.parameterValue = 'https://login.salesforce.com';
+            loginUrlParam.parameterValue = '_ORG_DOMAIN_';
             dto.parameters.add(loginUrlParam);
             
             // Call the service with the DTO
@@ -466,7 +466,7 @@ public with sharing class CredentialServiceExamples {
             ExternalCredentialDTO.ParameterDTO audParam = new ExternalCredentialDTO.ParameterDTO();
             audParam.parameterName = 'aud';
             audParam.parameterType = 'JwtBodyClaim';
-            audParam.parameterValue = 'https://login.salesforce.com'; // Or test.salesforce.com for sandboxes
+            audParam.parameterValue = '_ORG_DOMAIN_'; // Or test.salesforce.com for sandboxes
             dto.parameters.add(audParam);
             
             // Add scope
