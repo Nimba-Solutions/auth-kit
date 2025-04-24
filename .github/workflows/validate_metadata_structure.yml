@@ -35,48 +35,85 @@ jobs:
         continue-on-error: true
 
       - name: Generate report file
-        if: steps.validate.outputs.has_errors == 'true'
+        id: generate_report
         run: |
-          echo "# Salesforce Metadata Structure Validation Results" > report.md
-          echo "" >> report.md
-          echo "## ❌ Validation Failed" >> report.md
-          echo "" >> report.md
-          echo "Some folders in force-app/main/default are not packageable and should be relocated." >> report.md
-          
-          if [[ -n "${{ steps.validate.outputs.invalid_dirs }}" ]]; then
+          if [[ "${{ steps.validate.outputs.has_errors }}" == "true" ]]; then
+            echo "# Salesforce Metadata Structure Validation Results" > report.md
             echo "" >> report.md
-            echo "### Unsupported Types" >> report.md
+            echo "## ❌ Validation Failed" >> report.md
             echo "" >> report.md
+            echo "Some folders in force-app/main/default are not packageable and should be relocated." >> report.md
             
-            for dir in $(echo '${{ steps.validate.outputs.invalid_dirs }}' | jq -r '.[]'); do
-              echo "- \`$dir\`" >> report.md
-            done
+            if [[ -n "${{ steps.validate.outputs.invalid_dirs }}" ]]; then
+              echo "" >> report.md
+              echo "### Unsupported Types" >> report.md
+              echo "" >> report.md
+              
+              for dir in $(echo '${{ steps.validate.outputs.invalid_dirs }}' | jq -r '.[]'); do
+                echo "- \`$dir\`" >> report.md
+              done
+            fi
+            
+            echo "" >> report.md
+            echo "### Recommendations" >> report.md
+            echo "" >> report.md
+            echo "Move all unsupported Metadata Types to one of the following directories:" >> report.md
+            echo "- unpackaged/pre" >> report.md
+            echo "- unpackaged/post" >> report.md
+            echo "- a custom directory" >> report.md
+            echo "" >> report.md
+            echo "If you need help deciding, review [Metadata Retrieval FAQs](https://github.com/Nimba-Solutions/.github/wiki/Metadata-Retrieval-FAQs)" >> report.md
+            echo "report_content=true" >> $GITHUB_OUTPUT
+          else
+            echo "# Salesforce Metadata Structure Validation Results" > report.md
+            echo "" >> report.md
+            echo "## ✅ Validation Passed" >> report.md
+            echo "" >> report.md
+            echo "All directories in force-app/main/default are valid packageable Salesforce metadata types." >> report.md
+            echo "report_content=true" >> $GITHUB_OUTPUT
           fi
-          
-          echo "" >> report.md
-          echo "### Recommendations" >> report.md
-          echo "" >> report.md
-          echo "Move all unsupported Metadata Types to one of the following directories:" >> report.md
-          echo "- unpackaged/pre" >> report.md
-          echo "- unpackaged/post" >> report.md
-          echo "- a custom directory" >> report.md
-          echo "" >> report.md
-          echo "If you need help deciding, review [Metadata Retrieval FAQs](https://github.com/Nimba-Solutions/.github/wiki/Metadata-Retrieval-FAQs)" >> report.md
 
-      - name: Comment on PR
-        if: github.event_name == 'pull_request' && steps.validate.outputs.has_errors == 'true'
+      - name: Find or create comment
+        if: github.event_name == 'pull_request' && steps.generate_report.outputs.report_content == 'true'
         uses: actions/github-script@v6
         with:
           script: |
             const fs = require('fs');
             const reportContent = fs.readFileSync('report.md', 'utf8');
             
-            github.rest.issues.createComment({
+            // Title tag to identify our comment
+            const commentTag = '<!-- Salesforce Metadata Structure Validation Comment -->';
+            const commentBody = `${commentTag}\n${reportContent}`;
+            
+            // Get all comments on the PR
+            const { data: comments } = await github.rest.issues.listComments({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: reportContent
             });
+            
+            // Find our comment if it exists
+            const validationComment = comments.find(comment => comment.body.includes(commentTag));
+            
+            if (validationComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                comment_id: validationComment.id,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: commentBody
+              });
+              console.log('Updated existing comment');
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: commentBody
+              });
+              console.log('Created new comment');
+            }
 
       - name: Fail if errors were found
         if: steps.validate.outputs.has_errors == 'true'
