@@ -40,7 +40,7 @@ jobs:
           if [[ "${{ steps.validate.outputs.has_errors }}" == "true" ]]; then
             echo "# Salesforce Metadata Validation Report" > report.md
             echo "" >> report.md
-            echo "## ❌ Unsupported Types" >> report.md
+            echo "### ❌ Unsupported Types" >> report.md
             echo "" >> report.md
             
             if [[ -n "${{ steps.validate.outputs.invalid_dirs }}" ]]; then
