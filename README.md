@@ -21,4 +21,4 @@ Designed for Salesforce developers and administrators, AuthKit provides user-fri
 
 # Credit
 
-This project was partially inspired by [this excellent gist](./Populating%20Credentials%20with%20the%20Connect%20API.md) by GitHub user [rossbelmont](https://gist.github.com/rossbelmont).
+This project was partially inspired by [this excellent gist](./docs/Populating%20Credentials%20with%20the%20Connect%20API.md) by GitHub user [rossbelmont](https://gist.github.com/rossbelmont).
