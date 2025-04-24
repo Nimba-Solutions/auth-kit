@@ -1,4 +1,4 @@
-[Original Gist](https://gist.github.com/rossbelmont/b797c1871dd1187657db81cf1431b755)
+This file is maintained for longevity. Please give the [original gist](https://gist.github.com/rossbelmont/b797c1871dd1187657db81cf1431b755) a star!
 
 # Populating Credentials with the Connect API
 
