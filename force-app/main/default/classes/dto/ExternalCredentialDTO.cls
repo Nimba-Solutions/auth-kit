@@ -23,8 +23,15 @@ public class ExternalCredentialDTO {
         ConnectApi.ExternalCredentialInput input = new ConnectApi.ExternalCredentialInput();
         input.developerName = this.developerName;
         input.masterLabel = this.masterLabel;
-        input.authenticationProtocol = this.authenticationProtocol;
-        input.authenticationProtocolVariant = this.authenticationProtocolVariant;
+        
+        // Convert String to enum
+        if (this.authenticationProtocol != null) {
+            input.authenticationProtocol = getAuthProtocolEnum(this.authenticationProtocol);
+        }
+        
+        if (this.authenticationProtocolVariant != null) {
+            input.authenticationProtocolVariant = getAuthProtocolVariantEnum(this.authenticationProtocolVariant);
+        }
         
         input.parameters = new List<ConnectApi.ExternalCredentialParameterInput>();
         if (this.parameters != null) {
@@ -44,6 +51,40 @@ public class ExternalCredentialDTO {
     }
     
     /**
+     * @description Get the authentication protocol enum from a string
+     * @param protocol The protocol as a string
+     * @return ConnectApi.CredentialAuthenticationProtocol The enum value
+     */
+    private ConnectApi.CredentialAuthenticationProtocol getAuthProtocolEnum(String protocol) {
+        if (protocol.equalsIgnoreCase('OAuth')) {
+            return ConnectApi.CredentialAuthenticationProtocol.Oauth;
+        } else if (protocol.equalsIgnoreCase('AwsSig4')) {
+            return ConnectApi.CredentialAuthenticationProtocol.AwsSig4;
+        } else if (protocol.equalsIgnoreCase('JWT')) {
+            return ConnectApi.CredentialAuthenticationProtocol.Jwt;
+        } else if (protocol.equalsIgnoreCase('Password')) {
+            return ConnectApi.CredentialAuthenticationProtocol.Password;
+        } else {
+            return ConnectApi.CredentialAuthenticationProtocol.Custom;
+        }
+    }
+    
+    /**
+     * @description Get the authentication protocol variant enum from a string
+     * @param variant The variant as a string
+     * @return ConnectApi.CredentialAuthenticationProtocolVariant The enum value
+     */
+    private ConnectApi.CredentialAuthenticationProtocolVariant getAuthProtocolVariantEnum(String variant) {
+        if (variant.equalsIgnoreCase('JwtBearer')) {
+            return ConnectApi.CredentialAuthenticationProtocolVariant.JwtBearer;
+        } else if (variant.equalsIgnoreCase('ClientCredentialsJwtAssertion')) {
+            return ConnectApi.CredentialAuthenticationProtocolVariant.ClientCredentialsJwtAssertion;
+        } else {
+            return null;
+        }
+    }
+    
+    /**
      * @description Parameter DTO for External Credential
      */
     public class ParameterDTO {
@@ -58,9 +99,35 @@ public class ExternalCredentialDTO {
         public ConnectApi.ExternalCredentialParameterInput toConnectApiInput() {
             ConnectApi.ExternalCredentialParameterInput input = new ConnectApi.ExternalCredentialParameterInput();
             input.parameterName = this.parameterName;
-            input.parameterType = this.parameterType;
+            
+            // Convert String to enum
+            if (this.parameterType != null) {
+                input.parameterType = getParameterTypeEnum(this.parameterType);
+            }
+            
             input.parameterValue = this.parameterValue;
             return input;
+        }
+        
+        /**
+         * @description Get the parameter type enum from a string
+         * @param paramType The parameter type as a string
+         * @return ConnectApi.ExternalCredentialParameterType The enum value
+         */
+        private ConnectApi.ExternalCredentialParameterType getParameterTypeEnum(String paramType) {
+            if (paramType.equalsIgnoreCase('AuthParameter')) {
+                return ConnectApi.ExternalCredentialParameterType.AuthParameter;
+            } else if (paramType.equalsIgnoreCase('AuthProvider')) {
+                return ConnectApi.ExternalCredentialParameterType.AuthProvider;
+            } else if (paramType.equalsIgnoreCase('AuthProviderUrl')) {
+                return ConnectApi.ExternalCredentialParameterType.AuthProviderUrl;
+            } else if (paramType.equalsIgnoreCase('JwtBodyClaim')) {
+                return ConnectApi.ExternalCredentialParameterType.JwtBodyClaim;
+            } else if (paramType.equalsIgnoreCase('SigningCertificate')) {
+                return ConnectApi.ExternalCredentialParameterType.SigningCertificate;
+            } else {
+                return ConnectApi.ExternalCredentialParameterType.Custom;
+            }
         }
     }
     
@@ -79,9 +146,31 @@ public class ExternalCredentialDTO {
         public ConnectApi.ExternalCredentialPrincipalInput toConnectApiInput() {
             ConnectApi.ExternalCredentialPrincipalInput input = new ConnectApi.ExternalCredentialPrincipalInput();
             input.principalName = this.principalName;
-            input.principalType = this.principalType;
+            
+            // Convert String to enum
+            if (this.principalType != null) {
+                input.principalType = getPrincipalTypeEnum(this.principalType);
+            }
+            
             input.sequenceNumber = this.sequenceNumber;
             return input;
+        }
+        
+        /**
+         * @description Get the principal type enum from a string
+         * @param principalType The principal type as a string
+         * @return ConnectApi.CredentialPrincipalType The enum value
+         */
+        private ConnectApi.CredentialPrincipalType getPrincipalTypeEnum(String principalType) {
+            if (principalType.equalsIgnoreCase('NamedPrincipal')) {
+                return ConnectApi.CredentialPrincipalType.NamedPrincipal;
+            } else if (principalType.equalsIgnoreCase('PerUserPrincipal')) {
+                return ConnectApi.CredentialPrincipalType.PerUserPrincipal;
+            } else if (principalType.equalsIgnoreCase('AwsStsPrincipal')) {
+                return ConnectApi.CredentialPrincipalType.AwsStsPrincipal;
+            } else {
+                return ConnectApi.CredentialPrincipalType.Custom;
+            }
         }
     }
 } 

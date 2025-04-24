@@ -17,7 +17,7 @@ public with sharing class CredentialServiceExamples {
         );
         
         // Call the service with the DTO
-        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(dto);
+        Object response = CredentialService.upsertExternalCredential(dto);
         
         System.debug('Response: ' + response);
     }
@@ -38,7 +38,7 @@ public with sharing class CredentialServiceExamples {
         );
         
         // Call the service with the DTO
-        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(dto);
+        Object response = CredentialService.upsertExternalCredential(dto);
         
         System.debug('Response: ' + response);
     }
@@ -59,7 +59,7 @@ public with sharing class CredentialServiceExamples {
         );
         
         // Call the service with the DTO
-        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(dto);
+        Object response = CredentialService.upsertExternalCredential(dto);
         
         System.debug('External Credential Response: ' + response);
         
@@ -69,7 +69,7 @@ public with sharing class CredentialServiceExamples {
             'your-client-id'
         );
         
-        ConnectApi.CredentialRepresentation credResponse = CredentialService.populateCredential(credDto);
+        Object credResponse = CredentialService.populateCredential(credDto);
         
         System.debug('Credential Response: ' + credResponse);
     }
@@ -81,7 +81,7 @@ public with sharing class CredentialServiceExamples {
         // First create or update the External Credential
         ExternalCredentialDTO dto = CredentialFactory.createAwsSigV4('AwsSv4ExternalCredential');
         
-        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredential(dto);
+        Object response = CredentialService.upsertExternalCredential(dto);
         
         System.debug('External Credential Response: ' + response);
         
@@ -92,7 +92,7 @@ public with sharing class CredentialServiceExamples {
             'accessSecret'
         );
         
-        ConnectApi.CredentialRepresentation credResponse = CredentialService.populateCredential(credDto);
+        Object credResponse = CredentialService.populateCredential(credDto);
         
         System.debug('Credential Response: ' + credResponse);
     }
@@ -109,7 +109,7 @@ public with sharing class CredentialServiceExamples {
             'test1234'
         );
         
-        ConnectApi.CredentialRepresentation response = CredentialService.populateCredential(dto);
+        Object response = CredentialService.populateCredential(dto);
         
         System.debug('Response: ' + response);
     }
@@ -133,7 +133,7 @@ public with sharing class CredentialServiceExamples {
             encryptedFields
         );
         
-        ConnectApi.CredentialRepresentation response = CredentialService.populateCredential(dto);
+        Object response = CredentialService.populateCredential(dto);
         
         System.debug('Response: ' + response);
     }
@@ -146,7 +146,7 @@ public with sharing class CredentialServiceExamples {
         String jsonConfig = '{"developerName":"JsonExternalCredential","masterLabel":"JSON Example","authenticationProtocol":"OAuth","parameters":[{"parameterName":"AuthProvider","parameterType":"AuthProvider","parameterValue":"authProvider"},{"parameterName":"Scope","parameterType":"AuthParameter","parameterValue":"some_access"}],"principals":[{"principalName":"NamedPrincipal","principalType":"NamedPrincipal","sequenceNumber":1}]}';
         
         // Directly deserialize and use the JSON
-        ConnectApi.ExternalCredentialRepresentation response = CredentialService.upsertExternalCredentialFromJson(jsonConfig);
+        Object response = CredentialService.upsertExternalCredentialFromJson(jsonConfig);
         
         System.debug('Response: ' + response);
     }
@@ -159,7 +159,7 @@ public with sharing class CredentialServiceExamples {
         String jsonConfig = '{"externalCredential":"JsonExternalCredential","principalName":"NamedPrincipal","principalType":"NamedPrincipal","credentials":{"apiKey":{"value":"your-api-key","encrypted":true}}}';
         
         // Directly deserialize and use the JSON
-        ConnectApi.CredentialRepresentation response = CredentialService.populateCredentialFromJson(jsonConfig);
+        Object response = CredentialService.populateCredentialFromJson(jsonConfig);
         
         System.debug('Response: ' + response);
     }

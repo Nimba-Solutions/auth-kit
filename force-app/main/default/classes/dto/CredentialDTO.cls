@@ -20,7 +20,11 @@ public class CredentialDTO {
         ConnectApi.CredentialInput input = new ConnectApi.CredentialInput();
         input.externalCredential = this.externalCredential;
         input.principalName = this.principalName;
-        input.principalType = this.principalType;
+        
+        // Convert String to enum
+        if (this.principalType != null) {
+            input.principalType = getPrincipalTypeEnum(this.principalType);
+        }
         
         input.credentials = new Map<String, ConnectApi.CredentialValueInput>();
         if (this.credentials != null) {
@@ -30,6 +34,23 @@ public class CredentialDTO {
         }
         
         return input;
+    }
+    
+    /**
+     * @description Get the principal type enum from a string
+     * @param principalType The principal type as a string
+     * @return ConnectApi.CredentialPrincipalType The enum value
+     */
+    private ConnectApi.CredentialPrincipalType getPrincipalTypeEnum(String principalType) {
+        if (principalType.equalsIgnoreCase('NamedPrincipal')) {
+            return ConnectApi.CredentialPrincipalType.NamedPrincipal;
+        } else if (principalType.equalsIgnoreCase('PerUserPrincipal')) {
+            return ConnectApi.CredentialPrincipalType.PerUserPrincipal;
+        } else if (principalType.equalsIgnoreCase('AwsStsPrincipal')) {
+            return ConnectApi.CredentialPrincipalType.AwsStsPrincipal;
+        } else {
+            return ConnectApi.CredentialPrincipalType.Custom;
+        }
     }
     
     /**

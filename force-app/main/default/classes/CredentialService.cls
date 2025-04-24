@@ -8,9 +8,9 @@ public with sharing class CredentialService {
     /**
      * @description Creates or updates an External Credential using the Connect API
      * @param dto The External Credential DTO
-     * @return ConnectApi.ExternalCredentialRepresentation The response from the Connect API
+     * @return Object The response from the Connect API
      */
-    public static ConnectApi.ExternalCredentialRepresentation upsertExternalCredential(ExternalCredentialDTO dto) {
+    public static Object upsertExternalCredential(ExternalCredentialDTO dto) {
         try {
             ConnectApi.ExternalCredentialInput input = dto.toConnectApiInput();
             
@@ -28,9 +28,9 @@ public with sharing class CredentialService {
     /**
      * @description Creates or updates an External Credential using JSON
      * @param jsonString JSON string representation of the External Credential
-     * @return ConnectApi.ExternalCredentialRepresentation The response from the Connect API
+     * @return Object The response from the Connect API
      */
-    public static ConnectApi.ExternalCredentialRepresentation upsertExternalCredentialFromJson(String jsonString) {
+    public static Object upsertExternalCredentialFromJson(String jsonString) {
         ExternalCredentialDTO dto = (ExternalCredentialDTO)JSON.deserialize(
             jsonString,
             ExternalCredentialDTO.class
@@ -41,9 +41,9 @@ public with sharing class CredentialService {
     /**
      * @description Populates credential values for an External Credential
      * @param dto The Credential DTO
-     * @return ConnectApi.CredentialRepresentation The response from the Connect API
+     * @return Object The response from the Connect API
      */
-    public static ConnectApi.CredentialRepresentation populateCredential(CredentialDTO dto) {
+    public static Object populateCredential(CredentialDTO dto) {
         try {
             ConnectApi.CredentialInput input = dto.toConnectApiInput();
             
@@ -58,9 +58,9 @@ public with sharing class CredentialService {
     /**
      * @description Populates credential values using JSON
      * @param jsonString JSON string representation of the Credential
-     * @return ConnectApi.CredentialRepresentation The response from the Connect API
+     * @return Object The response from the Connect API
      */
-    public static ConnectApi.CredentialRepresentation populateCredentialFromJson(String jsonString) {
+    public static Object populateCredentialFromJson(String jsonString) {
         CredentialDTO dto = (CredentialDTO)JSON.deserialize(
             jsonString,
             CredentialDTO.class
