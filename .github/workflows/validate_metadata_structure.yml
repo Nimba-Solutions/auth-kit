@@ -1,0 +1,82 @@
+name: Validate Force-App Structure
+
+on:
+  workflow_call:
+    outputs:
+      has_errors:
+        description: "Whether any invalid metadata directories were found"
+        value: ${{ jobs.validate-structure.outputs.has_errors }}
+      invalid_dirs:
+        description: "List of invalid directories found"
+        value: ${{ jobs.validate-structure.outputs.invalid_dirs }}
+
+jobs:
+  validate-structure:
+    runs-on: ubuntu-latest
+    outputs:
+      has_errors: ${{ steps.validate.outputs.has_errors }}
+      invalid_dirs: ${{ steps.validate.outputs.invalid_dirs }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Create scripts directory
+        run: mkdir -p .github/scripts
+
+      - name: Validate Metadata Structure
+        id: validate
+        run: |
+          python .github/scripts/validate_metadata_structure.py
+        continue-on-error: true
+
+      - name: Generate report file
+        if: steps.validate.outputs.has_errors == 'true'
+        run: |
+          echo "# Salesforce Metadata Structure Validation Results" > report.md
+          echo "" >> report.md
+          echo "## ❌ Validation Failed" >> report.md
+          echo "" >> report.md
+          echo "Some folders in force-app/main/default are not packageable and should be relocated." >> report.md
+          
+          if [[ -n "${{ steps.validate.outputs.invalid_dirs }}" ]]; then
+            echo "" >> report.md
+            echo "### Invalid Directories" >> report.md
+            echo "" >> report.md
+            
+            for dir in $(echo '${{ steps.validate.outputs.invalid_dirs }}' | jq -r '.[]'); do
+              echo "- \`$dir\`" >> report.md
+            done
+          fi
+          
+          echo "" >> report.md
+          echo "### Recommendations" >> report.md
+          echo "" >> report.md
+          echo "1. Make sure all directories under force-app/main/default are packageable Salesforce metadata types" >> report.md
+          echo "2. Rename invalid directories to match Salesforce naming conventions" >> report.md
+          echo "3. If the directory is needed, add it to the list of valid types" >> report.md
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request' && steps.validate.outputs.has_errors == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const reportContent = fs.readFileSync('report.md', 'utf8');
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: reportContent
+            });
+
+      - name: Fail if errors were found
+        if: steps.validate.outputs.has_errors == 'true'
+        run: |
+          echo "Some files in force-app/main/default are not packageable and should be relocated."
+          exit 1 
