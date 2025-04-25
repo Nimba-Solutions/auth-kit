@@ -1,0 +1,37 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_compactlayout.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\"}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\"}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\"}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\"}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A000000ATmUQAW",
+      "lastUpdated": "2019-02-09",
+      "affectedUsers": 69,
+      "tags": "Metadata, Eclipse IDE, Change Sets",
+      "status": "Fixed",
+      "summary": "When deploying object metadata including Compact layouts to an Org without an existing record type for that object in the destination Org (but that is included with the object as part of the deploy), It fails with the below error -\r\n\r\nobjects/Account.object (Account.Account_Compact_Layout) -- Error: In field: RecordTypeId - no CustomField named Account.RecordTypeId found\r\n\r\nIf we attempt the same deployment to an Org where the object has an existing record type, deployment is successful.",
+      "title": "Error deploying Compact Layouts - In field: RecordTypeId - no CustomField named Account.RecordTypeId found"
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": true,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": true,
+    "classicManagedPackaging": true,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

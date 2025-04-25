@@ -1,0 +1,37 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_externaldatasource.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\",\"features\":[\"PLATFORMCONNECT:3\"]}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\",\"features\":[\"PLATFORMCONNECT:3\"]}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"features\":[\"PLATFORMCONNECT:3\"]}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\",\"features\":[\"PLATFORMCONNECT:3\"]}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000003UuHQAU",
+      "lastUpdated": "21 days ago",
+      "affectedUsers": 4,
+      "tags": "Salesforce DX",
+      "status": "In Review",
+      "summary": "External data source using Apex connector fails during package version creation of unlocked package, package version will get failed with an error:\r\n\r\nAn unexpected error occurred. Please contact Salesforce Support and provide the following error code: 1860394534-100348 (1658854796)",
+      "title": "External data source using Apex connector fails during package version creation of unlocked package"
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": true,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": true,
+    "classicManagedPackaging": true,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_workflow.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\",\"features\":[\"EASYTRIALHEADERALLOWED\",\"WORKFLOW\"]}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\",\"features\":[\"EASYTRIALHEADERALLOWED\",\"WORKFLOW\"]}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"features\":[\"EASYTRIALHEADERALLOWED\"]}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\"}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000003UjdQAE",
+      "lastUpdated": "2020-05-05",
+      "affectedUsers": 1,
+      "tags": null,
+      "status": "In Review",
+      "summary": "Unable to create namespaced package2 version when workflow references a custom object. Package versioning gets failed with an error like this : \r\nERROR:  The ObjectType references 'Pkgabcd__Bundle__c', which doesn't exist as an object in the org.",
+      "title": "Unable to create namespaced Unlocked package version when workflow references a custom object"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000003UjxQAE",
+      "lastUpdated": "2020-02-14",
+      "affectedUsers": 10,
+      "tags": "Salesforce DX",
+      "status": "No Fix",
+      "summary": "Not able to add a Workflow for a base Unlocked package custom object in extension Unlocked package, it throws an error similar to :\r\n\r\nERROR:  You're trying to include Workflow <your object's name> in Package ver 1.0. This component already exists in Package ver 1.0, which Package ver 1.0 depends on. You can't include the same component in both packages.",
+      "title": "Not able to add a Workflow for a base Unlocked package custom object in extension Unlocked package"
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": false,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": false,
+    "apexMetadataApi": false
+  }
+}

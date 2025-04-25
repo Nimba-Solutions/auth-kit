@@ -1,0 +1,25 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_webstorebundle.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"features\":[\"B2CCOMMERCEGMV\",\"COMMUNITIES\",\"WEBSTOREDEFINITIONENABLED\"],\"settings\":{\"communitiesSettings\":{\"enableNetworksEnabled\":true},\"commerceSettings\":{\"commerceEnabled\":true}}}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\",\"features\":[\"COMMUNITIES\",\"WEBSTOREDEFINITIONENABLED\"],\"settings\":{\"communitiesSettings\":{\"enableNetworksEnabled\":true},\"commerceSettings\":{\"commerceEnabled\":true}}}"
+  },
+  "knownIssues": null,
+  "channels": {
+    "unlockedPackagingWithoutNamespace": false,
+    "unlockedPackagingWithNamespace": false,
+    "toolingApi": true,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": false,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

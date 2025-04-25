@@ -1,0 +1,27 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_advacctforecastdimsource.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\",\"features\":[\"GENAIASSESSMENTQUESTIONS\"],\"settings\":{\"industriesManufacturingSettings\":{\"enableIndustriesMfgAdvForecast\":true}}}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\",\"features\":[\"GENAIASSESSMENTQUESTIONS\"],\"settings\":{\"industriesManufacturingSettings\":{\"enableIndustriesMfgAdvForecast\":true}}}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"features\":[\"GENAIASSESSMENTQUESTIONS\"],\"settings\":{\"industriesManufacturingSettings\":{\"enableIndustriesMfgAdvForecast\":true}}}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\",\"features\":[\"GENAIASSESSMENTQUESTIONS\"],\"settings\":{\"industriesManufacturingSettings\":{\"enableIndustriesMfgAdvForecast\":true}}}"
+  },
+  "knownIssues": null,
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": true,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": true,
+    "classicManagedPackaging": true,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

@@ -1,0 +1,156 @@
+name: Validate Force-App Structure
+
+on:
+  workflow_call:
+    outputs:
+      has_errors:
+        description: "Whether any unsupported Metadata Types were found"
+        value: ${{ jobs.validate-structure.outputs.has_errors }}
+      invalid_dirs:
+        description: "List of unsupported Metadata Types found"
+        value: ${{ jobs.validate-structure.outputs.invalid_dirs }}
+
+jobs:
+  validate-structure:
+    runs-on: ubuntu-latest
+    outputs:
+      has_errors: ${{ steps.validate.outputs.has_errors }}
+      invalid_dirs: ${{ steps.validate.outputs.invalid_dirs }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Create scripts directory
+        run: mkdir -p .github/scripts
+
+      - name: Validate Metadata Structure
+        id: validate
+        run: |
+          python .github/scripts/validate_metadata_structure.py
+        continue-on-error: true
+
+      - name: Generate report file
+        id: generate_report
+        run: |
+          if [[ "${{ steps.validate.outputs.has_errors }}" == "true" ]]; then
+            echo "# Salesforce Metadata Validation Report" > report.md
+            echo "" >> report.md
+            echo "### ❌ Unsupported Types" >> report.md
+            echo "" >> report.md
+            
+            if [[ -n "${{ steps.validate.outputs.invalid_dirs }}" ]]; then
+              echo "<pre>" >> report.md
+              echo "📁 force-app/" >> report.md
+              echo "└── 📁 main/" >> report.md
+              echo "    └── 📁 default/" >> report.md
+              
+              dirs=($(echo '${{ steps.validate.outputs.invalid_dirs }}' | jq -r '.[]'))
+              count=${#dirs[@]}
+              
+              for i in "${!dirs[@]}"; do
+                dir=${dirs[$i]}
+                if [[ $i -eq $(($count-1)) ]]; then
+                  echo "        └── ❌ ${dir}" >> report.md
+                else
+                  echo "        ├── ❌ ${dir}" >> report.md
+                fi
+              done
+              
+              echo "</pre>" >> report.md
+            fi
+            
+            echo "" >> report.md
+            echo "### Recommendations" >> report.md
+            echo "" >> report.md
+            echo "Move all unsupported metadata types to one of the following directories:" >> report.md
+            echo "" >> report.md
+            echo "<pre>" >> report.md
+            echo "📁                             # Project Root" >> report.md
+            echo "│" >> report.md
+            echo "└── 📁 unpackaged" >> report.md
+            echo "    ├── 📁 pre                 # Deployed BEFORE force-app" >> report.md
+            echo "    ├── 📁 post                # Deployed AFTER force-app" >> report.md
+            echo "    └── 📁 [custom-directory]  # For project-specific organization" >> report.md
+            echo "</pre>" >> report.md
+            echo "" >> report.md
+            echo "If you need help deciding where to put things, review [Metadata Retrieval FAQs](https://github.com/Nimba-Solutions/.github/wiki/Metadata-Retrieval-FAQs)" >> report.md
+            echo "report_content=true" >> $GITHUB_OUTPUT
+          else
+            echo "report_content=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment on PR with validation report
+        if: github.event_name == 'pull_request' && steps.generate_report.outputs.report_content == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const reportContent = fs.readFileSync('report.md', 'utf8');
+            
+            // Title tag to identify our comment
+            const commentTag = '<!-- Salesforce Metadata Structure Validation Comment -->';
+            const commentBody = `${commentTag}\n${reportContent}`;
+            
+            // Get all comments on the PR
+            const { data: comments } = await github.rest.issues.listComments({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            
+            // Find our comment if it exists
+            const validationComment = comments.find(comment => comment.body.includes(commentTag));
+            
+            if (validationComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                comment_id: validationComment.id,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: commentBody
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: commentBody
+              });
+            }
+
+      - name: Delete validation comment if validation passes
+        if: github.event_name == 'pull_request' && steps.generate_report.outputs.report_content == 'false'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // Get all comments on the PR
+            const { data: comments } = await github.rest.issues.listComments({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            
+            // Find our comment if it exists
+            const commentTag = '<!-- Salesforce Metadata Structure Validation Comment -->';
+            const validationComment = comments.find(comment => comment.body.includes(commentTag));
+            
+            if (validationComment) {
+              // Delete existing comment
+              await github.rest.issues.deleteComment({
+                comment_id: validationComment.id,
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+            }
+
+      - name: Fail if errors were found
+        if: steps.validate.outputs.has_errors == 'true'
+        run: |
+          echo "Some files in force-app/main/default are not packageable and should be relocated."
+          exit 1 

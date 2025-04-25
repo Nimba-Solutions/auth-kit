@@ -12,8 +12,13 @@ on:
       - main
 
 jobs:
+  validate-structure:
+    name: Validate Metadata Structure
+    uses: ./.github/workflows/validate_metadata_structure.yml
+
   feature-test:
     if: startsWith(github.head_ref, 'feature/')
+    needs: validate-structure
     uses: nimba-actions/standard-workflows/.github/workflows/feature-unlocked.yml@main
     secrets:
       dev-hub-auth-url: ${{ secrets.DEV_HUB_AUTH_URL }}
@@ -23,6 +28,7 @@ jobs:
 
   apex-scan:
     runs-on: ubuntu-latest
+    needs: validate-structure
     steps:
       - uses: actions/checkout@v3
         with:

@@ -1,0 +1,46 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_tab.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\"}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\"}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\"}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\"}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000003UjYQAU",
+      "lastUpdated": "21 days ago",
+      "affectedUsers": 0,
+      "tags": "Salesforce DX",
+      "status": "In Review",
+      "summary": "Uninstalling Second Generation  Package where Custom Tab is defined in an Extension package , incorrectly deletes ListView defined in Base Package.",
+      "title": "Uninstalling Second Generation PAckage  where Custom Tab is defined in extension package incorrectly deletes ListView defined in base package"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000003UuMQAU",
+      "lastUpdated": "21 days ago",
+      "affectedUsers": 0,
+      "tags": "Salesforce DX",
+      "status": "No Fix",
+      "summary": "Newly added Tab does not reflect in upgraded version of Unlocked Package.",
+      "title": "New tab is not added to TabSet on Unlocked Package upgrade"
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": true,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": true,
+    "classicManagedPackaging": true,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

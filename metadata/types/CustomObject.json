@@ -1,0 +1,82 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/customobject.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\",\"features\":[\"EASYTRIALHEADERALLOWED\",\"FIELDAUDITTRAIL\"]}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\",\"features\":[\"EASYTRIALHEADERALLOWED\",\"FIELDAUDITTRAIL\"]}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"features\":[\"B2CCOMMERCEPAYGOGMV\",\"FIELDAUDITTRAIL\"]}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\",\"features\":[\"B2CCOMMERCEPAYGOGMV\",\"FIELDAUDITTRAIL\"]}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000018BX2QAM",
+      "lastUpdated": "2018-10-31",
+      "affectedUsers": 114,
+      "tags": "Spring 18, Winter 18",
+      "status": "Fixed",
+      "summary": "When History Tracking is enabled in a scratch Org on a standard object and/or standard field that metadata change is not pulled down with a force:source:pull.  \r\n\r\nResult is that History tracking changes cannot be pushed to another Scratch Org.",
+      "title": "SFDX force:source:push command fails on History Tracking"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A000001SGSDQA4",
+      "lastUpdated": "16 days ago",
+      "affectedUsers": 52,
+      "tags": "Salesforce DX",
+      "status": "In Review",
+      "summary": "'sfdx force:source:push' will not push changes to detail object alone in M-D relationship",
+      "title": "'sfdx force:source:push' will not push changes to detail object alone in M-D relationship"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A0000003cvIQAQ",
+      "lastUpdated": "2020-05-24",
+      "affectedUsers": 9,
+      "tags": "Salesforce DX",
+      "status": "In Review",
+      "summary": "SharingModel change is not getting updated in Unlocked Package.",
+      "title": "SharingModel change is ignored in Unlocked Package"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A000001HlVVQA0",
+      "lastUpdated": "2018-10-15",
+      "affectedUsers": 0,
+      "tags": null,
+      "status": "In Review",
+      "summary": "When overriding mobile View action with lightning component , it does not detect source change when we do source:pull command",
+      "title": "Overriding mobile View action with lightning component does not detect source change with source:pull"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A000001HlVaQAK",
+      "lastUpdated": "2019-09-06",
+      "affectedUsers": 4,
+      "tags": "Salesforce DX",
+      "status": "Fixed",
+      "summary": "When you add an Action Override to a Custom Object or Custom Lightning App that already exists in your local copy of the metadata, the sfdx force:src:pull does not detect the change. The updates to the Custom Object or Custom Lightning App are not pulled to your local.",
+      "title": "SFDX: sfdx force:src:pull does not detect Action Override added to a CustomObject or Custom Lightning App"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p30000000T5hTAAS",
+      "lastUpdated": "2018-09-07",
+      "affectedUsers": 468,
+      "tags": "Platform, Custom Objects, Metadata",
+      "status": "Fixed",
+      "summary": "Metadata Deployment fails if there is history tracking in custom lookup field with look up filters, when the filter refers to a field with tracking to custom object in the same deployment transaction.",
+      "title": "Deployment fails with duplicate value found: <unknown> duplicates value on record with id: <unknown> error"
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": true,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": true,
+    "classicManagedPackaging": true,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

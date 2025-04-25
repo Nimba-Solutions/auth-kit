@@ -1,0 +1,46 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_report.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\"}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\"}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\"}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\"}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A000000JWcfQAG",
+      "lastUpdated": "2020-07-08",
+      "affectedUsers": 63,
+      "tags": "Salesforce DX",
+      "status": "In Review",
+      "summary": "Not able to convert the Report metadata to SFDX format when the report is in sub folder , for eg :\r\n\r\nunzipped folder >>> package.xml file + reports folders >>> parent folder >>> sub folder + metadata file >>> metadata file.",
+      "title": "Not Able to Convert Report Metadata to SFDX Format"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A000000FmgwQAC",
+      "lastUpdated": "2019-09-06",
+      "affectedUsers": 19,
+      "tags": "Salesforce DX",
+      "status": "Fixed",
+      "summary": "When using sfdx force:source:pull command to pull down the Joined reports which are saved multiple times are causing errors.",
+      "title": "SFDX: Second and subsequent saves of joined reports cause sfdx pulls to fail"
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": false,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": true,
+    "classicManagedPackaging": true,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

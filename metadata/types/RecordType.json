@@ -1,0 +1,55 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_recordtype.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\"}",
+    "group": "{\"orgName\":\"Sample Org\",\"edition\":\"group\"}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\"}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\"}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A000000BMKKQA4",
+      "lastUpdated": "2019-06-15",
+      "affectedUsers": 16,
+      "tags": "Salesforce DX",
+      "status": "Fixed",
+      "summary": "When a new picklist value is added to a record type in a scratch org, a subsequent force:source:status or force:source:pull does not grab the changes.",
+      "title": "New Picklist Values are not retrieved with Record Type with sfdx force:source:pull"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A00000031ycQAA",
+      "lastUpdated": "2019-06-15",
+      "affectedUsers": 7,
+      "tags": "Metadata, Salesforce DX",
+      "status": "Fixed",
+      "summary": "Salesforce DX : Custom picklist Values changes on RecordType are deleting the picklist metadata in source file by force:source:pull",
+      "title": "Custom picklist Values changes on RecordType are deleting the picklist metadata in source file by force:source:pull"
+    },
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A000000ATo6QAG",
+      "lastUpdated": "2018-10-13",
+      "affectedUsers": 16,
+      "tags": "Metadata, Salesforce DX",
+      "status": "Fixed",
+      "summary": "Salesforce DX : picklist values on recordType when changes are not being detected by force:source:status and are not pulled by force:source:pull",
+      "title": "Picklist Values changes on RecordType are not being detected by force:source:status and are not pulled by force:source:pull"
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": true,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": true,
+    "classicManagedPackaging": true,
+    "changeSets": true,
+    "apexMetadataApi": false
+  }
+}

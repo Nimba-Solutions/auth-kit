@@ -1,0 +1,36 @@
+{
+  "details": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_customobjecttranslation.htm",
+      "name": "Metadata API Documentation"
+    }
+  ],
+  "scratchDefinitions": {
+    "professional": "{\"orgName\":\"Sample Org\",\"edition\":\"professional\",\"settings\":{\"languageSettings\":{\"enableTranslationWorkbench\":true}}}",
+    "enterprise": "{\"orgName\":\"Sample Org\",\"edition\":\"enterprise\",\"settings\":{\"languageSettings\":{\"enableTranslationWorkbench\":true}}}",
+    "developer": "{\"orgName\":\"Sample Org\",\"edition\":\"developer\",\"settings\":{\"languageSettings\":{\"enableTranslationWorkbench\":true}}}"
+  },
+  "knownIssues": [
+    {
+      "url": "https://success.salesforce.com/issues_view?id=a1p3A000000JWY9QAO",
+      "lastUpdated": "2019-05-03",
+      "affectedUsers": 6,
+      "tags": "Metadata, Salesforce DX",
+      "status": "Fixed",
+      "summary": "Some customers have observed that they see an error similar to the following when pulling related entities after a custom object gets renamed.\r\n\r\nERROR running force:source:pull:  Entity of type 'CustomField' named 'MyObject__c.MyField__c' cannot be found\r\n\r\nCannot retrieve translation for object:AcmeIncExample__MyObject__c.\r\n\r\nThe expected error is that SFDX appears to conflate the two namespaces, resulting in SFDX looking for an Object that does not exist:",
+      "title": "Errors pulling related entities after a custom object gets renamed"
+    }
+  ],
+  "channels": {
+    "unlockedPackagingWithoutNamespace": true,
+    "unlockedPackagingWithNamespace": true,
+    "toolingApi": false,
+    "sourceTracking": true,
+    "metadataApi": true,
+    "managedPackaging": true,
+    "classicUnmanagedPackaging": false,
+    "classicManagedPackaging": false,
+    "changeSets": false,
+    "apexMetadataApi": false
+  }
+}
